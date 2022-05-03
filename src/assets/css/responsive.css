@@ -1,0 +1,184 @@
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 992px) { 
+	.container{
+		max-width: 990px;
+	}
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+	.container{
+		max-width: 768px;
+	}
+}
+@media (max-width: 991px) {
+	body{
+		font-size: 17px;
+	}
+	header {
+	    padding: 20px 0;
+	}
+	#menu {
+	    position: fixed;
+	    top: 0;
+	    left: -100%;
+	    width: 100%;
+	    height: 100%;
+	    background-color: #212121;
+	    padding-top: 100px;
+	    z-index: -1;
+	    flex-direction: column;
+	    justify-content: flex-start;
+	    transition: 0.4s;
+	}
+	#menu.current{
+		left: 0;
+	}
+	#menu li{
+		padding-left: 0px;
+		margin-top: 20px;
+	}
+	#menu li:nth-last-child(2),
+	#menu li:last-child{
+		padding-left: 0;
+	}
+	.hamburger-menu {
+		display: block;
+	}
+	.room_img {
+	    width: 255px;
+	}
+	.room_content h2 {
+	    font-size: 25px;
+	}
+	.button{
+		padding: 8px 10px;
+	}
+	.filter_box .button img {
+	    margin-right: 5px;
+	}
+	.reset {
+	    margin-right: 15px;
+	}
+		
+}
+
+/*Medium devices (tablets, 767px and down)*/
+@media (max-width: 767.98px) {
+	.room_box{
+		flex-direction: column;
+	}
+	.room_img {
+	    width: 100%;
+	}
+	footer h4{
+		margin-top: 30px;
+	}
+	.btn_wrap .button {
+	    font-size: 14px;
+	}
+	.btn_wrap .button img{
+		width: 15px;
+	}
+}
+
+/*Small devices (landscape phones, 575px and down)*/
+@media (max-width: 575.98px) {
+	body{
+		font-size: 15px;
+		letter-spacing: 0;
+	}
+	footer{
+		text-align: center;
+		padding: 30px 0;
+	}
+	.filter_box .button{
+		max-width: 100%;
+	}
+	.filter_box .more_filter {
+	    text-align: left !important;
+	}
+	.filter_box .nice-select.more_filter:after {
+	    right: 16px;
+	}
+	.filter_box {
+	    padding: 0 20px 24px;
+	}
+	.filter_wrap{
+		flex-wrap: wrap;
+	}
+	.filter_wrap h4 {
+	    font-size: 23px;
+	    margin-bottom: 20px;
+	}
+	.filter_wrap .dropdown-toggle{
+		width: 100%;
+	}
+	.filter_wrap .dropdown{
+		width: 100%;
+	}
+	.dropdown-menu.show{
+		width: 100%;
+	}
+	.room_content {
+	    padding: 20px;
+	}
+	.heart {
+	    top: 20px;
+	    right: 20px;
+	}
+	.room_content h2 {
+	    font-size: 18px;
+	}
+	.banner{
+		min-height: 200px;
+		object-fit: cover;
+	}
+	#sync1 .owl-dot.active:before {
+	    top: -11px;
+	    font-size: 16px;
+	}
+	#sync1 .owl-dots {
+	    right: 10px;
+	    bottom: 10px;
+	    border-radius: 6px;
+	}
+	.title {
+	    font-size: 22px;
+	}
+	.sub_title {
+	    font-size: 18px;
+	    margin-top: 0;
+	}
+	.check_list li {
+	    padding-left: 24px;
+	    font-size: 14px;
+	}
+	.check_list li::before {
+	    height: 16px;
+	    width: 16px;
+	}
+	.details_list li .icon {
+	    width: 18px;
+	    margin-right: 10px;
+	}
+	.sm_title {
+	    font-size: 16px;
+	}
+	.sm_text {
+	    font-size: 15px;
+	}
+	.md_title {
+	    font-size: 20px;	
+	}
+	.owl-nav button {
+	    font-size: 40px;
+	}
+	.button.black{
+		margin-right: 10px;
+	}
+	.btn_wrap .button {
+	    font-size: 13px;
+	    width: calc(50% - 7px);
+	}
+}
+
+
