@@ -13,7 +13,10 @@ var OffersService = /** @class */ (function () {
         this.http = http;
     }
     OffersService.prototype.getOffers = function (search) {
-        return this.http.post('https://website.sygnation.com/offers', search);
+        return this.http.post('http://127.0.0.1:5000/offers', search);
+    };
+    OffersService.prototype.getSettings = function () {
+        return this.http.post('http://127.0.0.1:5000/settings', '');
     };
     OffersService = __decorate([
         core_1.Injectable({

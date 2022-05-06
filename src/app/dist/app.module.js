@@ -14,6 +14,8 @@ var app_component_1 = require("./app.component");
 var header_component_1 = require("./header/header.component");
 var footer_component_1 = require("./footer/footer.component");
 var http_1 = require("@angular/common/http");
+var ng_nice_select_1 = require("ng-nice-select");
+var forms_1 = require("@angular/forms");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -27,7 +29,9 @@ var AppModule = /** @class */ (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 app_routing_module_1.AppRoutingModule,
-                http_1.HttpClientModule
+                http_1.HttpClientModule,
+                ng_nice_select_1.NiceSelectModule,
+                forms_1.FormsModule
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]

@@ -49,7 +49,7 @@
         });
 
         // nice select
-        $('select').niceSelect();
+        //$('select').niceSelect();
 
         // slider
         var sync1 = $("#sync1");
@@ -60,12 +60,12 @@
             items: 1,
             slideSpeed: 2000,
             nav: true,
-            autoplay: false, 
+            autoplay: false,
             dots: true,
             loop: false,
             responsiveRefreshRate: 200,
             navText: [
-                '<i class="fal fa-angle-left"></i>', 
+                '<i class="fal fa-angle-left"></i>',
                 '<i class="fal fa-angle-right"></i>'
             ]
         }).on('changed.owl.carousel', syncPosition);
@@ -73,12 +73,12 @@
       sync2.on('initialized.owl.carousel', function() {
         sync2.find(".owl-item.center").eq(0).addClass("current");
       })
-      
+
       /* centered items */
       sync2.find('.owl-item').each(function(index) {
         var item = $(this).attr('data-position', index);
       })
-      
+
       sync2.owlCarousel({
         margin: 16,
         dots: false,
@@ -98,25 +98,25 @@
       }).on('click', '.owl-item', function(e) {
             var carouselSync1 = $('#sync1').data('owl.carousel');
             e.preventDefault();
-        
+
             var current = $(this).index();
             carouselSync1.to(carouselSync1.relative(current));
-            
+
             /* centered items */
             sync2.trigger('to.owl-carousel', $(this).data('position'));
           });
 
         function syncPosition(el) {
-           
+
             var current = el.item.index;
-          
+
             sync2.find(".owl-item").removeClass("current").eq(current).addClass("current");
             var onscreen = sync2.find('.owl-item.active').length - 1;
             var start = sync2.find('.owl-item.active').first().index();
             var end = sync2.find('.owl-item.active').last().index();
-          
+
             console.log('currentSync1: ' + current)
-          
+
             if (current > end) {
               sync2.data('owl.carousel').to(current, 100, true);
             }

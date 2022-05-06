@@ -29,14 +29,12 @@
             "styles": [
               "src/styles.css",
               "src/assets/css/bootstrap.min.css",
-              "node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
-              "node_modules/jquery-nice-select/css/nice-select.css"
+              "node_modules/owl.carousel/dist/assets/owl.carousel.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "src/assets/js/plugins.js",
               "node_modules/owl.carousel/dist/owl.carousel.min.js",
-              "node_modules/jquery-nice-select/js/jquery.nice-select.min.js",
               "src/assets/js/main.js"
             ]
           },

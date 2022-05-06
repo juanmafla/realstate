@@ -8,81 +8,119 @@
           <form action="#" class="filter_box">
               <div class="row">
                   <div class="col-md-3">
-                      <h4>Property</h4>
-                      <select>
-                          <option>Any</option>
-                          <option>Any</option>
-                          <option>Any</option>
-                      </select>
+                      <ng-container *ngFor="let field of this.fields;">
+                        <ng-container *ngIf="field?.name=='property_type'">
+                          <h4>Property</h4>
+                          <ng-container *ngIf="field?.input_type=='checkbox'" >
+                            <select nice-select multiple [(ngModel)]="property" [ngModelOptions]="{standalone: true}">
+                              <ng-container *ngFor="let values of this.field?.allowed_values;">
+                                <option value="{{values}}">{{ values.replace('_', ' ') }}</option>
+                              </ng-container>
+                            </select>
+                          </ng-container>
+                          <ng-container *ngIf="field?.input_type!='checkbox'">
+                            <select nice-select [(ngModel)]="property" [ngModelOptions]="{standalone: true}">
+                              <ng-container *ngFor="let values of this.field?.allowed_values;">
+                                <option value="{{values}}">{{ values.replace('_', ' ') }}</option>
+                              </ng-container>
+                            </select>
+                          </ng-container>
+                        </ng-container>
+                      </ng-container>
                   </div>
                   <div class="col-md-6">
                       <h4>Location</h4>
                       <div class="input_wrap">
                           <img src="./assets/img/map-pin.svg" alt="">
-                          <input type="text" placeholder="Choose from list or write location name ">
+                          <input type="text" placeholder="Choose from list or write location name " [(ngModel)]="location" [ngModelOptions]="{standalone: true}">
                           <span>+0km</span>
                       </div>
                   </div>
                   <div class="col-md-3">
-                      <h4>Market type</h4>
-                      <select>
-                          <option>All</option>
-                          <option>All</option>
-                          <option>All</option>
-                      </select>
+                      <ng-container *ngFor="let field of this.fields;">
+                        <ng-container *ngIf="field?.name=='market'">
+                          <h4>Market type</h4>
+                          <select nice-select [(ngModel)]="market" [ngModelOptions]="{standalone: true}">
+                            <ng-container *ngFor="let values of this.field?.allowed_values;">
+                              <option value="{{values}}">{{ values.replace('_', ' ') }}</option>
+                            </ng-container>
+                          </select>
+                        </ng-container>
+                      </ng-container>
                   </div>
                   <div class="col-md-9">
                       <div class="row">
                           <div class="col-md-6">
-                              <h4>Price</h4>
-                              <div class="row half_gutters">
-                                  <div class="col-6">
-                                      <input type="text" placeholder="From">
-                                  </div>
-                                  <div class="col-6">
-                                      <input type="text" placeholder="To">
-                                  </div>
-                              </div>
+                            <ng-container *ngFor="let field of this.fields;">
+                              <ng-container *ngIf="field?.name=='price'">
+                                <h4>Price</h4>
+                                <div class="row half_gutters">
+                                    <div class="col-6">
+                                        <input type="text" placeholder="From" [(ngModel)]="price_from" [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" placeholder="To" [(ngModel)]="price_to" [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                </div>
+                              </ng-container>
+                            </ng-container>
                           </div>
                           <div class="col-md-6">
-                              <h4>Area</h4>
-                              <div class="row half_gutters">
-                                  <div class="col-6">
-                                      <input type="text" placeholder="From">
-                                  </div>
-                                  <div class="col-6">
-                                      <input type="text" placeholder="To">
-                                  </div>
-                              </div>
+                            <ng-container *ngFor="let field of this.fields;">
+                              <ng-container *ngIf="field?.name=='area'">
+                                <h4>Area</h4>
+                                <div class="row half_gutters">
+                                    <div class="col-6">
+                                        <input type="text" placeholder="From" [(ngModel)]="area_from" [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" placeholder="To" [(ngModel)]="area_to" [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                </div>
+                              </ng-container>
+                            </ng-container>
                           </div>
                       </div>
                   </div>
                   <div class="col-md-3">
-                      <h4>Offer type</h4>
-                      <select>
-                          <option>Sell & rent</option>
-                          <option>Sell & rent</option>
-                          <option>Sell & rent</option>
-                      </select>
+                    <ng-container *ngFor="let field of this.fields;">
+                      <ng-container *ngIf="field?.name=='status'">
+                        <h4>Offer type</h4>
+                        <ng-container *ngIf="field?.input_type=='checkbox'">
+                          <select nice-select [(ngModel)]="offer_type" [ngModelOptions]="{standalone: true}">
+                            <ng-container *ngFor="let values of this.field?.allowed_values;">
+                              <option value="{{values}}">{{ values.replace('_', ' ') }}</option>
+                            </ng-container>
+                          </select>
+                        </ng-container>
+                        <ng-container *ngIf="field?.input_type!='checkbox'">
+                          <select nice-select [(ngModel)]="offer_type" [ngModelOptions]="{standalone: true}">
+                            <ng-container *ngFor="let values of this.field?.allowed_values;">
+                              <option value="{{values}}">{{ values.replace('_', ' ') }}</option>
+                            </ng-container>
+                          </select>
+                        </ng-container>
+                      </ng-container>
+                    </ng-container>
                   </div>
                   <div class="col-md-4 col-sm-5 mt_32">
                       <button type="button" class="save_search button"><img src="./assets/img/bell.svg" alt="">Save searching</button>
                   </div>
                   <div class="col-md-5 col-sm-7 d-flex align-items-center justify-content-end mt_32">
                       <button class="reset" type="reset">Clear filters</button>
-                      <select class="mt-0 more_filter">
+                      <select nice-select class="mt-0 more_filter">
                           <option>More filters</option>
                           <option>More filters</option>
                           <option>More filters</option>
                       </select>
                   </div>
                   <div class="col-md-3 mt_32">
-                      <button type="submit" class="button"><img src="./assets/img/search.svg" alt="">Search offers</button>
+                      <button type="submit" class="button" (click)="Search_offers()"><img src="./assets/img/search.svg" alt="">Search offers</button>
                   </div>
               </div>
           </form>
           <div class="d-flex align-items-center justify-content-between filter_wrap">
-              <h4>Number of offers: <span>12 143</span></h4>
+              <h4>Number of offers: <span>{{number_offers}}</span></h4>
               <div class="dropdown">
                   <button class="dropdown-toggle" type="button" data-toggle="dropdown">
                       <img src="./assets/img/filter.svg" alt="">
@@ -94,201 +132,49 @@
                   </ul>
               </div>
           </div>
-          <div class="room_box">
-              <a href="#" class="room_img">
-                  <img src="./assets/img/img1.png" alt="">
-              </a>
-              <div class="room_content position-relative">
-                  <a href="#">
-                      <h2 class="pr_30">Luxurious apartment for sale</h2>
-                  </a>
-                  <p class="mt_5">Mokotów, Warsaw, Masovia</p>
-                  <div class="row pt_10">
-                      <div class="col-6">
-                          <ul>
-                              <li><img src="./assets/img/icon1.svg" alt=""> 308 m²</li>
-                              <li><img src="./assets/img/icon2.svg" alt=""> Flat</li>
-                          </ul>
-                      </div>
-                      <div class="col-6">
-                          <ul>
-                              <li><img src="./assets/img/icon3.svg" alt=""> 4 rooms</li>
-                              <li><img src="./assets/img/icon4.svg" alt=""> Apartment</li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="row align-items-end">
-                      <div class="col-6 mt_10">
-                          <p><strong>Private seller</strong></p>
-                      </div>
-                      <div class="col-6 text-right mt_10">
-                          <p>12 500 PLN/m²</p>
-                          <h2>7 500 000 PLN</h2>
-                      </div>
-                  </div>
-                  <div class="heart">
-                      <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M24.2133 1.32002C20.6933 -1.07998 16.3466 0.0400178 14 2.78668C11.6533 0.0400178 7.30663 -1.09332 3.78663 1.32002C1.91996 2.60002 0.746625 4.76002 0.666625 7.04002C0.479959 12.2134 5.06663 16.36 12.0666 22.72L12.2 22.84C13.2133 23.76 14.7733 23.76 15.7866 22.8267L15.9333 22.6933C22.9333 16.3467 27.5066 12.2 27.3333 7.02668C27.2533 4.76002 26.08 2.60002 24.2133 1.32002ZM14.1333 20.7333L14 20.8667L13.8666 20.7333C7.51996 14.9867 3.33329 11.1867 3.33329 7.33335C3.33329 4.66668 5.33329 2.66668 7.99996 2.66668C10.0533 2.66668 12.0533 3.98668 12.76 5.81335H15.2533C15.9466 3.98668 17.9466 2.66668 20 2.66668C22.6666 2.66668 24.6666 4.66668 24.6666 7.33335C24.6666 11.1867 20.48 14.9867 14.1333 20.7333Z" fill="#212121"/>
-                      </svg>
-                  </div>
-              </div>
-          </div>
-          <div class="room_box">
-              <a href="#" class="room_img">
-                  <img src="./assets/img/img1.png" alt="">
-              </a>
-              <div class="room_content position-relative">
-                  <a href="#">
-                      <h2 class="pr_30">Luxurious apartment for sale</h2>
-                  </a>
-                  <p class="mt_5">Mokotów, Warsaw, Masovia</p>
-                  <div class="row pt_10">
-                      <div class="col-6">
-                          <ul>
-                              <li><img src="./assets/img/icon1.svg" alt=""> 308 m²</li>
-                              <li><img src="./assets/img/icon2.svg" alt=""> Flat</li>
-                          </ul>
-                      </div>
-                      <div class="col-6">
-                          <ul>
-                              <li><img src="./assets/img/icon3.svg" alt=""> 4 rooms</li>
-                              <li><img src="./assets/img/icon4.svg" alt=""> Apartment</li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="row align-items-end">
-                      <div class="col-6 mt_10">
-                          <p><strong>Private seller</strong></p>
-                      </div>
-                      <div class="col-6 text-right mt_10">
-                          <p>12 500 PLN/m²</p>
-                          <h2>7 500 000 PLN</h2>
-                      </div>
-                  </div>
-                  <div class="heart">
-                      <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M24.2133 1.32002C20.6933 -1.07998 16.3466 0.0400178 14 2.78668C11.6533 0.0400178 7.30663 -1.09332 3.78663 1.32002C1.91996 2.60002 0.746625 4.76002 0.666625 7.04002C0.479959 12.2134 5.06663 16.36 12.0666 22.72L12.2 22.84C13.2133 23.76 14.7733 23.76 15.7866 22.8267L15.9333 22.6933C22.9333 16.3467 27.5066 12.2 27.3333 7.02668C27.2533 4.76002 26.08 2.60002 24.2133 1.32002ZM14.1333 20.7333L14 20.8667L13.8666 20.7333C7.51996 14.9867 3.33329 11.1867 3.33329 7.33335C3.33329 4.66668 5.33329 2.66668 7.99996 2.66668C10.0533 2.66668 12.0533 3.98668 12.76 5.81335H15.2533C15.9466 3.98668 17.9466 2.66668 20 2.66668C22.6666 2.66668 24.6666 4.66668 24.6666 7.33335C24.6666 11.1867 20.48 14.9867 14.1333 20.7333Z" fill="#212121"/>
-                      </svg>
-                  </div>
-              </div>
-          </div>
-          <div class="room_box">
-              <a href="#" class="room_img">
-                  <img src="./assets/img/img1.png" alt="">
-              </a>
-              <div class="room_content position-relative">
-                  <a href="#">
-                      <h2 class="pr_30">Luxurious apartment for sale</h2>
-                  </a>
-                  <p class="mt_5">Mokotów, Warsaw, Masovia</p>
-                  <div class="row pt_10">
-                      <div class="col-6">
-                          <ul>
-                              <li><img src="./assets/img/icon1.svg" alt=""> 308 m²</li>
-                              <li><img src="./assets/img/icon2.svg" alt=""> Flat</li>
-                          </ul>
-                      </div>
-                      <div class="col-6">
-                          <ul>
-                              <li><img src="./assets/img/icon3.svg" alt=""> 4 rooms</li>
-                              <li><img src="./assets/img/icon4.svg" alt=""> Apartment</li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="row align-items-end">
-                      <div class="col-6 mt_10">
-                          <p><strong>Private seller</strong></p>
-                      </div>
-                      <div class="col-6 text-right mt_10">
-                          <p>12 500 PLN/m²</p>
-                          <h2>7 500 000 PLN</h2>
-                      </div>
-                  </div>
-                  <div class="heart">
-                      <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M24.2133 1.32002C20.6933 -1.07998 16.3466 0.0400178 14 2.78668C11.6533 0.0400178 7.30663 -1.09332 3.78663 1.32002C1.91996 2.60002 0.746625 4.76002 0.666625 7.04002C0.479959 12.2134 5.06663 16.36 12.0666 22.72L12.2 22.84C13.2133 23.76 14.7733 23.76 15.7866 22.8267L15.9333 22.6933C22.9333 16.3467 27.5066 12.2 27.3333 7.02668C27.2533 4.76002 26.08 2.60002 24.2133 1.32002ZM14.1333 20.7333L14 20.8667L13.8666 20.7333C7.51996 14.9867 3.33329 11.1867 3.33329 7.33335C3.33329 4.66668 5.33329 2.66668 7.99996 2.66668C10.0533 2.66668 12.0533 3.98668 12.76 5.81335H15.2533C15.9466 3.98668 17.9466 2.66668 20 2.66668C22.6666 2.66668 24.6666 4.66668 24.6666 7.33335C24.6666 11.1867 20.48 14.9867 14.1333 20.7333Z" fill="#212121"/>
-                      </svg>
-                  </div>
-              </div>
-          </div>
-          <div class="room_box">
-              <a href="#" class="room_img">
-                  <img src="./assets/img/img1.png" alt="">
-              </a>
-              <div class="room_content position-relative">
-                  <a href="#">
-                      <h2 class="pr_30">Luxurious apartment for sale</h2>
-                  </a>
-                  <p class="mt_5">Mokotów, Warsaw, Masovia</p>
-                  <div class="row pt_10">
-                      <div class="col-6">
-                          <ul>
-                              <li><img src="./assets/img/icon1.svg" alt=""> 308 m²</li>
-                              <li><img src="./assets/img/icon2.svg" alt=""> Flat</li>
-                          </ul>
-                      </div>
-                      <div class="col-6">
-                          <ul>
-                              <li><img src="./assets/img/icon3.svg" alt=""> 4 rooms</li>
-                              <li><img src="./assets/img/icon4.svg" alt=""> Apartment</li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="row align-items-end">
-                      <div class="col-6 mt_10">
-                          <p><strong>Private seller</strong></p>
-                      </div>
-                      <div class="col-6 text-right mt_10">
-                          <p>12 500 PLN/m²</p>
-                          <h2>7 500 000 PLN</h2>
-                      </div>
-                  </div>
-                  <div class="heart">
-                      <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M24.2133 1.32002C20.6933 -1.07998 16.3466 0.0400178 14 2.78668C11.6533 0.0400178 7.30663 -1.09332 3.78663 1.32002C1.91996 2.60002 0.746625 4.76002 0.666625 7.04002C0.479959 12.2134 5.06663 16.36 12.0666 22.72L12.2 22.84C13.2133 23.76 14.7733 23.76 15.7866 22.8267L15.9333 22.6933C22.9333 16.3467 27.5066 12.2 27.3333 7.02668C27.2533 4.76002 26.08 2.60002 24.2133 1.32002ZM14.1333 20.7333L14 20.8667L13.8666 20.7333C7.51996 14.9867 3.33329 11.1867 3.33329 7.33335C3.33329 4.66668 5.33329 2.66668 7.99996 2.66668C10.0533 2.66668 12.0533 3.98668 12.76 5.81335H15.2533C15.9466 3.98668 17.9466 2.66668 20 2.66668C22.6666 2.66668 24.6666 4.66668 24.6666 7.33335C24.6666 11.1867 20.48 14.9867 14.1333 20.7333Z" fill="#212121"/>
-                      </svg>
-                  </div>
-              </div>
-          </div>
-          <div class="room_box">
-              <a href="#" class="room_img">
-                  <img src="./assets/img/img1.png" alt="">
-              </a>
-              <div class="room_content position-relative">
-                  <a href="#">
-                      <h2 class="pr_30">Luxurious apartment for sale</h2>
-                  </a>
-                  <p class="mt_5">Mokotów, Warsaw, Masovia</p>
-                  <div class="row pt_10">
-                      <div class="col-6">
-                          <ul>
-                              <li><img src="./assets/img/icon1.svg" alt=""> 308 m²</li>
-                              <li><img src="./assets/img/icon2.svg" alt=""> Flat</li>
-                          </ul>
-                      </div>
-                      <div class="col-6">
-                          <ul>
-                              <li><img src="./assets/img/icon3.svg" alt=""> 4 rooms</li>
-                              <li><img src="./assets/img/icon4.svg" alt=""> Apartment</li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="row align-items-end">
-                      <div class="col-6 mt_10">
-                          <p><strong>Private seller</strong></p>
-                      </div>
-                      <div class="col-6 text-right mt_10">
-                          <p>12 500 PLN/m²</p>
-                          <h2>7 500 000 PLN</h2>
-                      </div>
-                  </div>
-                  <div class="heart">
-                      <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M24.2133 1.32002C20.6933 -1.07998 16.3466 0.0400178 14 2.78668C11.6533 0.0400178 7.30663 -1.09332 3.78663 1.32002C1.91996 2.60002 0.746625 4.76002 0.666625 7.04002C0.479959 12.2134 5.06663 16.36 12.0666 22.72L12.2 22.84C13.2133 23.76 14.7733 23.76 15.7866 22.8267L15.9333 22.6933C22.9333 16.3467 27.5066 12.2 27.3333 7.02668C27.2533 4.76002 26.08 2.60002 24.2133 1.32002ZM14.1333 20.7333L14 20.8667L13.8666 20.7333C7.51996 14.9867 3.33329 11.1867 3.33329 7.33335C3.33329 4.66668 5.33329 2.66668 7.99996 2.66668C10.0533 2.66668 12.0533 3.98668 12.76 5.81335H15.2533C15.9466 3.98668 17.9466 2.66668 20 2.66668C22.6666 2.66668 24.6666 4.66668 24.6666 7.33335C24.6666 11.1867 20.48 14.9867 14.1333 20.7333Z" fill="#212121"/>
-                      </svg>
-                  </div>
-              </div>
-          </div>
+
+          <ng-container *ngFor="let offer of this.offers;">
+            <div class="room_box">
+                <a href="#" class="room_img">
+                    <img *ngIf="offer?.photos[0]" src="{{offer?.photos[0]}}" alt="">
+                </a>
+                <div class="room_content position-relative">
+                    <a href="#">
+                        <h2 class="pr_30">{{offer?.title}}</h2>
+                    </a>
+                    <p class="mt_5">...</p>
+                    <div class="row pt_10">
+                        <div class="col-6">
+                            <ul>
+                                <li><img src="./assets/img/icon1.svg" alt=""> {{offer?.area}} m²</li>
+                                <li><img src="./assets/img/icon2.svg" alt=""> ...</li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul>
+                                <li><img src="./assets/img/icon3.svg" alt=""> .. rooms</li>
+                                <li><img src="./assets/img/icon4.svg" alt=""> ...</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row align-items-end">
+                        <div class="col-6 mt_10">
+                            <p><strong>Private seller</strong></p>
+                        </div>
+                        <div class="col-6 text-right mt_10">
+                            <p>12 500 PLN/m²</p>
+                            <h2>{{offer?.price}} PLN</h2>
+                        </div>
+                    </div>
+                    <div class="heart">
+                        <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24.2133 1.32002C20.6933 -1.07998 16.3466 0.0400178 14 2.78668C11.6533 0.0400178 7.30663 -1.09332 3.78663 1.32002C1.91996 2.60002 0.746625 4.76002 0.666625 7.04002C0.479959 12.2134 5.06663 16.36 12.0666 22.72L12.2 22.84C13.2133 23.76 14.7733 23.76 15.7866 22.8267L15.9333 22.6933C22.9333 16.3467 27.5066 12.2 27.3333 7.02668C27.2533 4.76002 26.08 2.60002 24.2133 1.32002ZM14.1333 20.7333L14 20.8667L13.8666 20.7333C7.51996 14.9867 3.33329 11.1867 3.33329 7.33335C3.33329 4.66668 5.33329 2.66668 7.99996 2.66668C10.0533 2.66668 12.0533 3.98668 12.76 5.81335H15.2533C15.9466 3.98668 17.9466 2.66668 20 2.66668C22.6666 2.66668 24.6666 4.66668 24.6666 7.33335C24.6666 11.1867 20.48 14.9867 14.1333 20.7333Z" fill="#212121"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+          </ng-container>
+
       </div>
   </main>
 <app-footer></app-footer>
