@@ -306,7 +306,7 @@ header.sticky {
 	font-weight: 600;
 	font-size: 20px;
 	line-height: 120%;
-	margin-top: 24px;
+	margin-top: 28px;
 }
 .filter_box .button{
 	width: 100%;
@@ -336,7 +336,7 @@ header.sticky {
 	padding-right: 7.5px;
 }
 .mt_32{
-	margin-top: 32px;
+	margin-top: 38px;
 }
 .reset{
 	font-weight: 600;
@@ -531,44 +531,47 @@ footer li a:hover{
 #sync1{
 	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2);
 	border-radius: 12px;
+  margin-top: 25px;
+  display: block;
 }
-#sync1 .item img{
+#sync1 .owl-item img{
 	max-height: 536px;
 	object-fit: cover;
 }
-#sync1 .item img{
+#sync1 .owl-item img{
 	border-radius: 12px;
 }
 #sync2{
 	padding: 16px 0;
 }
-#sync2 .item img{
+#sync2 .owl-item img{
 	border-radius: 8px;
 	overflow: hidden;
 	max-height: 128px;
 	transition: 0.3s;
 	border: 2px solid transparent;
 }
-#sync2 .owl-item.active.current .item img{
+#sync2 .owl-item.active a.currentitem img,
+#sync2 .owl-item.active a.firstitem img{
 	border-color: #FB8D00;
 	object-fit: cover;
 }
-.owl-nav button{
-	background-color: transparent;
-	padding: 0;
-	font-size: 60px;
-	color: #FAFAFA;
+.owl-nav > div{
+	background-color: transparent !important;
+	padding: 0 !important;
+	font-size: 60px !important;
+	color: #FAFAFA !important;
 	position: absolute;
 	top: 50%;
-	transform: translateY(-50%);
+	transform: translateY(-50%) !important;
 }
-.owl-nav button.disabled{
+.owl-nav > div.disabled{
 	display: none;
 }
-.owl-nav button.owl-next{
+.owl-nav > div.owl-next{
 	right: 20px;
 }
-.owl-nav button.owl-prev{
+.owl-nav > div.owl-prev{
 	left: 20px;
 }
 
@@ -654,7 +657,7 @@ footer li a:hover{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding-top: 8px;
+	padding-top: 12px;
 }
 .details_list li>span{
 	display: flex;
@@ -692,7 +695,7 @@ footer li a:hover{
 	font-size: 16px;
 	color: #212121;
 	font-family: 'Source Sans Pro', sans-serif;
-	margin-top: 10px;
+	margin-top: 13px;
 	letter-spacing: 0.5px;
 }
 .check_list li::before{
@@ -742,4 +745,11 @@ footer li a:hover{
 	letter-spacing: 0.5px;
 	color: #212121;
 	font-family: 'Source Sans Pro', sans-serif;
+  line-height: 20px;
+}
+.owl-theme .owl-dots .owl-dot span {
+  display: none;
+}
+.pricem2 {
+  margin-top: 3px;
 }

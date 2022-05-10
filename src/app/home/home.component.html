@@ -1,3 +1,11 @@
+<!-- Preloader Start -->
+<div id="preloader" *ngIf="!loaded">
+  <div class="loader3">
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<!-- Preloader End -->
 <main>
   <div class="container">
       <!-- banner -->
@@ -12,14 +20,14 @@
                       <ng-container *ngIf="field?.input_type=='checkbox'" >
                         <select nice-select multiple [(ngModel)]="property" [ngModelOptions]="{standalone: true}">
                           <ng-container *ngFor="let values of this.field?.allowed_values;">
-                            <option value="{{values}}">{{ values.replace('_', ' ') }}</option>
+                            <option value="{{values}}">{{ values.replace('_', ' ').replace('_', ' ') }}</option>
                           </ng-container>
                         </select>
                       </ng-container>
                       <ng-container *ngIf="field?.input_type!='checkbox'">
                         <select nice-select [(ngModel)]="property" [ngModelOptions]="{standalone: true}">
                           <ng-container *ngFor="let values of this.field?.allowed_values;">
-                            <option value="{{values}}">{{ values.replace('_', ' ') }}</option>
+                            <option value="{{values}}">{{ values.replace('_', ' ').replace('_', ' ') }}</option>
                           </ng-container>
                         </select>
                       </ng-container>
@@ -118,15 +126,15 @@
           </div>
       </form>
       <div class="d-flex align-items-center justify-content-between filter_wrap">
-          <h4>Number of offers: <span>{{number_offers}}</span></h4>
+          <h4>Number of offers: <span>{{offers?.length}}</span></h4>
           <div class="dropdown">
               <button class="dropdown-toggle" type="button" data-toggle="dropdown">
                   <img src="./assets/img/filter.svg" alt="">
                   Sort by
               </button>
               <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Recent</a></li>
-                  <li><a class="dropdown-item" href="#">Oldest</a></li>
+                  <li><a class="dropdown-item"  (click)="Timeorder()">Time</a></li>
+                  <li><a class="dropdown-item" (click)="Pricingorder()">Pricing</a></li>
               </ul>
           </div>
       </div>

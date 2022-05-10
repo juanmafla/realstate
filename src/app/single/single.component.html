@@ -1,3 +1,11 @@
+<!-- Preloader Start -->
+<div id="preloader" *ngIf="!loaded">
+  <div class="loader3">
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<!-- Preloader End -->
 <main>
   <div class="container">
       <div class="row btn_wrap">
@@ -20,7 +28,7 @@
       </div>
 
       <owl-carousel-o id="sync1"  [options]="sync1" (changed)="getData($event, owlCar2)" #owlCar>
-        <ng-container *ngFor="let photo of this.offer.ad.photos; let i= index">
+        <ng-container *ngFor="let photo of this.offer?.ad?.photos; let i= index">
           <ng-template carouselSlide [id]="'sl_'+i">
             <img src="{{photo}}" class="w-100" alt="">
           </ng-template>
@@ -28,9 +36,9 @@
       </owl-carousel-o>
 
       <owl-carousel-o id="sync2" [options]="sync2" #owlCar2>
-        <ng-container *ngFor="let photo of this.offer.ad.photos; let i= index">
+        <ng-container *ngFor="let photo of this.offer?.ad?.photos; let i= index;">
           <ng-template carouselSlide [id]="'sl_'+i">
-            <a (click)="owlCar.to('sl_'+i)">
+            <a (click)="getThumbsdata(owlCar, i, photo)"  [class.currentitem]="currentitem==photo" [ngClass]="{'currentitem': i === 0}">
               <img src="{{photo}}" class="w-100" alt="">
             </a>
           </ng-template>
@@ -43,7 +51,7 @@
           </div>
           <div class="col-lg-5 text-sm-right mt_10">
               <h2 class="title">{{this.offer?.ad.price.price}} {{this.offer?.ad.price.currency |uppercase}}</h2>
-              <p class="sub_title mt_10">{{this.offer?.ad.price.price_per_m2}} {{this.offer?.ad.price.currency |uppercase}}/m²</p>
+              <p class="sub_title pricem2">{{this.offer?.ad.price.price_per_m2}} {{this.offer?.ad.price.currency |uppercase}}/m²</p>
           </div>
       </div>
       <h4 class="md_title">Offer details</h4>
@@ -224,10 +232,12 @@
       </div>
       <h4 class="md_title pb_15">Description</h4>
       <p class="sm_text">
-        {{this.offer?.ad.description}}
-        <span class="collapse" id="coll">ultricies ligula. Maecenas ultrices nisl eget justo posuere pulvinar. Etiam arcu orci, dignissim condimentum quam vel, euismod efficitur massa. Pellentesque scelerisque arcu non eros venenatis, commodo aliquet metus dapibus. Maecenas massa tellus, suscipit nec cursus ut, pharetra vitae dui. Praesent mollis dolor vel ultrices tempus. In in scelerisque felis. Pellentesque ac mi eget libero tincidunt aliquet.<br><br> Nam nec venenatis leo, eget dapibus eros. Aliquam enim diam, mollis vitae dui et, condimentum vehicula ligula. In ullamcorper nisi et tristique aliquet. Nunc risus nisl, eleifend nec ullamcorper vitae, molestie quis leo. Aliquam euismod lacinia varius. Sed et risus vehicula, gravida nisi non, commodo purus. Nullam nec elit sit amet risus semper tincidunt. Nullam tempus nisi laoreet justo bibendum, efficitur ornare orci ultricies. Duis finibus rutrum eleifend. Nunc quam nibh, dignissim in turpis eget, semper sagittis sem. <br><br> Proin id enim nisi. Integer pulvinar metus in est venenatis, quis congue magna rhoncus. Sed tincidunt aliquet consequat. In hac habitasse platea dictumst. Aliquam eleifend varius tellus, ut euismod sapien elementum a. Maecenas eleifend erat quis pellentesque posuere. Ut et arcu erat. Donec quis dolor vel dui vulputate tincidunt et at diam. Nunc id nisl non velit scelerisque suscipit. Curabitur suscipit nibh arcu, eget blandit lorem efficitur a. Duis dignissim euismod semper. Aliquam ornare odio vel dolor tempus, nec pulvinar erat ultricies. Cras pharetra nisi eros, in condimentum ex auctor sed. Morbi massa erat, sodales nec elit nec, tincidunt dignissim orci. Vivamus maximus eu sem eget fermentum.</span></p>
-      <!--<div class="text-center mt_10 pb_10">
-          <button class="toggle_btn" type="button" data-toggle="collapse" data-target="#coll" aria-expanded="false"><i class="fal fa-angle-down"></i></button>
-      </div>-->
+        <span class="descuttext">
+          {{this.offer?.ad.description  | slice:0:300}} ...
+        </span>
+        <span class="collapse" id="coll">{{this.offer?.ad.description}}</span></p>
+      <div class="text-center mt_10 pb_10">
+          <button class="toggle_btn singledescbtn" type="button" aria-expanded="false"><i class="fal fa-angle-down"></i></button>
+      </div>
   </div>
 </main>

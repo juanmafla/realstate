@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   area_to: number = 0;
   offer_type: string = '';
   number_offers: number = 0;
+  loaded: boolean = false;
 
   constructor(public offerservice: OffersService) { }
 
@@ -51,13 +52,11 @@ export class HomeComponent implements OnInit {
     this.offerservice.getSettings().subscribe(data=> {
       this.fields=data['output'];
       //console.log(data);
+      this.loaded=true;
     });
 
     this.offerservice.getOffers(this.search).subscribe(data=> {
       this.offers=data['output'];
-      this.number_offers=data.lenght;
-      console.log(data);
-      console.log(this.number_offers);
     });
 
   }
@@ -89,9 +88,68 @@ export class HomeComponent implements OnInit {
 
     this.offerservice.getOffers(Search_offers).subscribe(data=> {
       this.offers=data['output'];
-      this.number_offers=data['output'].lenght;
-      console.log(data);
-      console.log(this.number_offers);
+    });
+  }
+
+  Timeorder() {
+    const Search_offers = {
+      "query": [
+        {
+          "name": "sorting",
+          "value": "time",
+          "type": "ascending"
+        },
+        {
+          "name": "page",
+          "value": 1
+        },
+        {
+          "name": "price",
+          "value": this.price_from,
+          "type": "lower"
+        },
+        {
+          "name": "price",
+          "value": this.price_to,
+          "type": "greater"
+        }
+      ]
+    };
+
+    this.offerservice.getOffers(Search_offers).subscribe(data=> {
+      this.offers=data['output'];
+      this.number_offers=data['output'].length;
+    });
+  }
+
+  Pricingorder() {
+    const Search_offers = {
+      "query": [
+        {
+          "name": "sorting",
+          "value": "price",
+          "type": "ascending"
+        },
+        {
+          "name": "page",
+          "value": 1
+        },
+        {
+          "name": "price",
+          "value": this.price_from,
+          "type": "lower"
+        },
+        {
+          "name": "price",
+          "value": this.price_to,
+          "type": "greater"
+        }
+      ]
+    };
+
+    this.offerservice.getOffers(Search_offers).subscribe(data=> {
+      this.offers=data['output'];
+      this.number_offers=data['output'].length;
     });
   }
 

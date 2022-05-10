@@ -40,26 +40,32 @@ var SingleComponent = /** @class */ (function () {
                 }
             }
         };
-        this.adsf = 'dd';
+        this.currentitem = '';
+        this.loaded = false;
     }
     SingleComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (params) {
             _this.id = params['id'];
-            console.log(_this.id);
+            //console.log(this.id);
             var link_id = { "id": _this.id };
             _this.offerservice.getOffer(link_id).subscribe(function (data) {
                 _this.offer = data.output;
-                console.log(data.output);
+                _this.loaded = true;
+                //console.log(data.output);
             });
         });
     };
     SingleComponent.prototype.getData = function (data, sl) {
         this.activeSlides = data;
-        console.log(this.activeSlides.slides[0].id);
+        //console.log(this.activeSlides.slides![0].id);
         if (this.activeSlides.slides[0].id) {
             sl.to(this.activeSlides.slides[0].id);
         }
+    };
+    SingleComponent.prototype.getThumbsdata = function (sl, index, photo) {
+        sl.to('sl_' + index);
+        this.currentitem = photo;
     };
     SingleComponent = __decorate([
         core_1.Component({

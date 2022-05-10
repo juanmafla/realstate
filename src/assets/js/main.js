@@ -51,6 +51,16 @@
         // nice select
         //$('select').niceSelect();
 
+        $('.singledescbtn').on('click', function () {
+          $('.descuttext').toggle();
+          $('#coll').toggle();
+          let arxp=$(this).attr('aria-expanded');
+          if(arxp=='true') {
+            $(this).attr('aria-expanded', 'false');
+          } else {
+            $(this).attr('aria-expanded', 'true');
+          }
+        });
 
     });
 

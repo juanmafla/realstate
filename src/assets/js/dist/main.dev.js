@@ -47,5 +47,17 @@
       $('.hamburger-menu .line-bottom').toggleClass('current');
     }); // nice select
     //$('select').niceSelect();
+
+    $('.singledescbtn').on('click', function () {
+      $('.descuttext').toggle();
+      $('#coll').toggle();
+      var arxp = $(this).attr('aria-expanded');
+
+      if (arxp == 'true') {
+        $(this).attr('aria-expanded', 'false');
+      } else {
+        $(this).attr('aria-expanded', 'true');
+      }
+    });
   });
 })(jQuery);

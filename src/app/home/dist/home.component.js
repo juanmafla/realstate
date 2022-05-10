@@ -20,6 +20,7 @@ var HomeComponent = /** @class */ (function () {
         this.area_to = 0;
         this.offer_type = '';
         this.number_offers = 0;
+        this.loaded = false;
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -49,12 +50,10 @@ var HomeComponent = /** @class */ (function () {
         this.offerservice.getSettings().subscribe(function (data) {
             _this.fields = data['output'];
             //console.log(data);
+            _this.loaded = true;
         });
         this.offerservice.getOffers(this.search).subscribe(function (data) {
             _this.offers = data['output'];
-            _this.number_offers = data.lenght;
-            console.log(data);
-            console.log(_this.number_offers);
         });
     };
     HomeComponent.prototype.Search_offers = function () {
@@ -84,9 +83,66 @@ var HomeComponent = /** @class */ (function () {
         };
         this.offerservice.getOffers(Search_offers).subscribe(function (data) {
             _this.offers = data['output'];
-            _this.number_offers = data['output'].lenght;
-            console.log(data);
-            console.log(_this.number_offers);
+        });
+    };
+    HomeComponent.prototype.Timeorder = function () {
+        var _this = this;
+        var Search_offers = {
+            "query": [
+                {
+                    "name": "sorting",
+                    "value": "time",
+                    "type": "ascending"
+                },
+                {
+                    "name": "page",
+                    "value": 1
+                },
+                {
+                    "name": "price",
+                    "value": this.price_from,
+                    "type": "lower"
+                },
+                {
+                    "name": "price",
+                    "value": this.price_to,
+                    "type": "greater"
+                }
+            ]
+        };
+        this.offerservice.getOffers(Search_offers).subscribe(function (data) {
+            _this.offers = data['output'];
+            _this.number_offers = data['output'].length;
+        });
+    };
+    HomeComponent.prototype.Pricingorder = function () {
+        var _this = this;
+        var Search_offers = {
+            "query": [
+                {
+                    "name": "sorting",
+                    "value": "price",
+                    "type": "ascending"
+                },
+                {
+                    "name": "page",
+                    "value": 1
+                },
+                {
+                    "name": "price",
+                    "value": this.price_from,
+                    "type": "lower"
+                },
+                {
+                    "name": "price",
+                    "value": this.price_to,
+                    "type": "greater"
+                }
+            ]
+        };
+        this.offerservice.getOffers(Search_offers).subscribe(function (data) {
+            _this.offers = data['output'];
+            _this.number_offers = data['output'].length;
         });
     };
     HomeComponent = __decorate([
