@@ -9,6 +9,10 @@ export class OffersService {
 
   constructor(private http: HttpClient) { }
 
+  getOffer(link_id: any):Observable<any> {
+    return this.http.post('http://127.0.0.1:5000/offer', link_id);
+  }
+
   getOffers(search: any):Observable<any> {
     return this.http.post('http://127.0.0.1:5000/offers', search);
   }

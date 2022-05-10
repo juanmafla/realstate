@@ -12,6 +12,9 @@ var OffersService = /** @class */ (function () {
     function OffersService(http) {
         this.http = http;
     }
+    OffersService.prototype.getOffer = function (link_id) {
+        return this.http.post('http://127.0.0.1:5000/offer', link_id);
+    };
     OffersService.prototype.getOffers = function (search) {
         return this.http.post('http://127.0.0.1:5000/offers', search);
     };

@@ -16,6 +16,10 @@ var footer_component_1 = require("./footer/footer.component");
 var http_1 = require("@angular/common/http");
 var ng_nice_select_1 = require("ng-nice-select");
 var forms_1 = require("@angular/forms");
+var single_component_1 = require("./single/single.component");
+var home_component_1 = require("./home/home.component");
+var animations_1 = require("@angular/platform-browser/animations");
+var ngx_owl_carousel_o_1 = require("ngx-owl-carousel-o");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -24,14 +28,18 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 app_component_1.AppComponent,
                 header_component_1.HeaderComponent,
-                footer_component_1.FooterComponent
+                footer_component_1.FooterComponent,
+                single_component_1.SingleComponent,
+                home_component_1.HomeComponent,
             ],
             imports: [
                 platform_browser_1.BrowserModule,
                 app_routing_module_1.AppRoutingModule,
                 http_1.HttpClientModule,
                 ng_nice_select_1.NiceSelectModule,
-                forms_1.FormsModule
+                forms_1.FormsModule,
+                animations_1.BrowserAnimationsModule,
+                ngx_owl_carousel_o_1.CarouselModule
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]
