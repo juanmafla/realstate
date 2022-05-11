@@ -6,7 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.AppModule = void 0;
+exports.AppModule = exports.HttpLoaderFactory = void 0;
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_routing_module_1 = require("./app-routing.module");
@@ -20,6 +20,13 @@ var single_component_1 = require("./single/single.component");
 var home_component_1 = require("./home/home.component");
 var animations_1 = require("@angular/platform-browser/animations");
 var ngx_owl_carousel_o_1 = require("ngx-owl-carousel-o");
+var core_2 = require("@ngx-translate/core");
+var http_loader_1 = require("@ngx-translate/http-loader");
+// AoT requires an exported function for factories
+function HttpLoaderFactory(http) {
+    return new http_loader_1.TranslateHttpLoader(http);
+}
+exports.HttpLoaderFactory = HttpLoaderFactory;
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -39,7 +46,15 @@ var AppModule = /** @class */ (function () {
                 ng_nice_select_1.NiceSelectModule,
                 forms_1.FormsModule,
                 animations_1.BrowserAnimationsModule,
-                ngx_owl_carousel_o_1.CarouselModule
+                ngx_owl_carousel_o_1.CarouselModule,
+                core_2.TranslateModule.forRoot({
+                    defaultLanguage: 'pl',
+                    loader: {
+                        provide: core_2.TranslateLoader,
+                        useFactory: HttpLoaderFactory,
+                        deps: [http_1.HttpClient]
+                    }
+                })
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]

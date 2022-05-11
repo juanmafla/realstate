@@ -16,7 +16,7 @@
               <div class="col-md-3">
                   <ng-container *ngFor="let field of this.fields;">
                     <ng-container *ngIf="field?.name=='property_type'">
-                      <h4>Property</h4>
+                      <h4>{{ 'Property' | translate }}</h4>
                       <ng-container *ngIf="field?.input_type=='checkbox'" >
                         <select nice-select multiple [(ngModel)]="property" [ngModelOptions]="{standalone: true}">
                           <ng-container *ngFor="let values of this.field?.allowed_values;">
@@ -35,17 +35,17 @@
                   </ng-container>
               </div>
               <div class="col-md-6">
-                  <h4>Location</h4>
+                  <h4>{{ 'Location' | translate }}</h4>
                   <div class="input_wrap">
                       <img src="./assets/img/map-pin.svg" alt="">
                       <input type="text" placeholder="Choose from list or write location name " [(ngModel)]="location" [ngModelOptions]="{standalone: true}">
-                      <span>+0km</span>
+                      <span>{{ '+0km' | translate }}</span>
                   </div>
               </div>
               <div class="col-md-3">
                   <ng-container *ngFor="let field of this.fields;">
                     <ng-container *ngIf="field?.name=='market'">
-                      <h4>Market type</h4>
+                      <h4>{{ 'Market type' | translate }}</h4>
                       <select nice-select [(ngModel)]="market" [ngModelOptions]="{standalone: true}">
                         <ng-container *ngFor="let values of this.field?.allowed_values;">
                           <option value="{{values}}">{{ values.replace('_', ' ') }}</option>
@@ -59,7 +59,7 @@
                       <div class="col-md-6">
                         <ng-container *ngFor="let field of this.fields;">
                           <ng-container *ngIf="field?.name=='price'">
-                            <h4>Price</h4>
+                            <h4>{{ 'Price' | translate }}</h4>
                             <div class="row half_gutters">
                                 <div class="col-6">
                                     <input type="text" placeholder="From" [(ngModel)]="price_from" [ngModelOptions]="{standalone: true}">
@@ -74,7 +74,7 @@
                       <div class="col-md-6">
                         <ng-container *ngFor="let field of this.fields;">
                           <ng-container *ngIf="field?.name=='area'">
-                            <h4>Area</h4>
+                            <h4>{{ 'Area' | translate }}</h4>
                             <div class="row half_gutters">
                                 <div class="col-6">
                                     <input type="text" placeholder="From" [(ngModel)]="area_from" [ngModelOptions]="{standalone: true}">
@@ -91,7 +91,7 @@
               <div class="col-md-3">
                 <ng-container *ngFor="let field of this.fields;">
                   <ng-container *ngIf="field?.name=='status'">
-                    <h4>Offer type</h4>
+                    <h4>{{ 'Offer type' | translate }}</h4>
                     <ng-container *ngIf="field?.input_type=='checkbox'">
                       <select nice-select [(ngModel)]="offer_type" [ngModelOptions]="{standalone: true}">
                         <ng-container *ngFor="let values of this.field?.allowed_values;">
@@ -110,31 +110,29 @@
                 </ng-container>
               </div>
               <div class="col-md-4 col-sm-5 mt_32">
-                  <button type="button" class="save_search button"><img src="./assets/img/bell.svg" alt="">Save searching</button>
+                  <button type="button" class="save_search button"><img src="./assets/img/bell.svg" alt="">{{ 'Save searching' | translate }}</button>
               </div>
               <div class="col-md-5 col-sm-7 d-flex align-items-center justify-content-end mt_32">
-                  <button class="reset" type="reset">Clear filters</button>
+                  <button class="reset" type="reset">{{ 'Clear filters' | translate }}</button>
                   <select nice-select class="mt-0 more_filter">
-                      <option>More filters</option>
-                      <option>More filters</option>
-                      <option>More filters</option>
+                      <option></option>
                   </select>
               </div>
               <div class="col-md-3 mt_32">
-                  <button type="submit" class="button" (click)="Search_offers()"><img src="./assets/img/search.svg" alt="">Search offers</button>
+                  <button type="submit" class="button" (click)="Search_offers()"><img src="./assets/img/search.svg" alt="">{{ 'Search offers' | translate }}</button>
               </div>
           </div>
       </form>
       <div class="d-flex align-items-center justify-content-between filter_wrap">
-          <h4>Number of offers: <span>{{offers?.length}}</span></h4>
+          <h4>{{ 'Number of offers:' | translate }} <span>{{offers?.length}}</span></h4>
           <div class="dropdown">
               <button class="dropdown-toggle" type="button" data-toggle="dropdown">
                   <img src="./assets/img/filter.svg" alt="">
-                  Sort by
+                  {{ 'Sort by' | translate }}
               </button>
               <ul class="dropdown-menu">
-                  <li><a class="dropdown-item"  (click)="Timeorder()">Time</a></li>
-                  <li><a class="dropdown-item" (click)="Pricingorder()">Pricing</a></li>
+                  <li><a class="dropdown-item"  (click)="Timeorder()">{{ 'Time' | translate }}</a></li>
+                  <li><a class="dropdown-item" (click)="Pricingorder()">{{ 'Pricing' | translate }}</a></li>
               </ul>
           </div>
       </div>
@@ -152,24 +150,24 @@
                 <div class="row pt_10">
                     <div class="col-6">
                         <ul>
-                            <li><img src="./assets/img/icon1.svg" alt=""> {{offer?.area}} m²</li>
+                            <li><img src="./assets/img/icon1.svg" alt=""> {{offer?.area}} {{ 'm²' | translate }}</li>
                             <li><img src="./assets/img/icon2.svg" alt=""> ...</li>
                         </ul>
                     </div>
                     <div class="col-6">
                         <ul>
-                            <li><img src="./assets/img/icon3.svg" alt=""> .. rooms</li>
+                            <li><img src="./assets/img/icon3.svg" alt=""> .. {{ 'rooms' | translate }}</li>
                             <li><img src="./assets/img/icon4.svg" alt=""> ...</li>
                         </ul>
                     </div>
                 </div>
                 <div class="row align-items-end">
                     <div class="col-6 mt_10">
-                        <p><strong>Private seller</strong></p>
+                        <p><strong>{{ 'Private seller' | translate }}</strong></p>
                     </div>
                     <div class="col-6 text-right mt_10">
-                        <p>12 500 PLN/m²</p>
-                        <h2>{{offer?.price}} PLN</h2>
+                        <p>12 500{{ 'PLN/m²' | translate }}</p>
+                        <h2>{{offer?.price}} {{ 'PLN' | translate }}</h2>
                     </div>
                 </div>
                 <div class="heart">

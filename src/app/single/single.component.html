@@ -12,17 +12,17 @@
           <div class="col-sm-4">
               <a routerLink="/" class="button white mt_25">
                   <i class="fal fa-arrow-left"></i>
-                  Back to listing
+                  {{ 'Back to listing' | translate }}
               </a>
           </div>
           <div class="col-sm-8 text-right">
               <a href="#" class="button black mt_25 mr_20">
                   <img src="./assets/img/love2.svg" alt="">
-                  Add to favourites
+                  {{ 'Add to favourites' | translate }}
               </a>
               <a href="#" class="button mt_25">
                   <img src="./assets/img/link.svg" alt="">
-                  Open offer
+                  {{ 'Open offer' | translate }}
               </a>
           </div>
       </div>
@@ -51,10 +51,10 @@
           </div>
           <div class="col-lg-5 text-sm-right mt_10">
               <h2 class="title">{{this.offer?.ad.price.price}} {{this.offer?.ad.price.currency |uppercase}}</h2>
-              <p class="sub_title pricem2">{{this.offer?.ad.price.price_per_m2}} {{this.offer?.ad.price.currency |uppercase}}/m²</p>
+              <p class="sub_title pricem2">{{this.offer?.ad.price.price_per_m2}} {{this.offer?.ad.price.currency |uppercase}}{{ '/m²' | translate }}</p>
           </div>
       </div>
-      <h4 class="md_title">Offer details</h4>
+      <h4 class="md_title">{{ 'Offer details' | translate }}</h4>
       <div class="row">
           <div class="col-md-6 pr-lg-5">
               <ul class="details_list">
@@ -63,7 +63,7 @@
                           <span class="icon">
                               <img src="./assets/img/icon1.svg" alt="">
                           </span>
-                          Space
+                          {{ 'Space' | translate }}
                       </span>
                       <strong>{{this.offer?.building.properties.area}} m²</strong>
                   </li>
@@ -72,7 +72,7 @@
                           <span class="icon">
                               <img src="./assets/img/icon2.svg" alt="">
                           </span>
-                          Property
+                          {{ 'Property' | translate }}
                       </span>
                       <strong>{{this.offer?.building.features.type}}</strong>
                   </li>
@@ -81,7 +81,7 @@
                           <span class="icon">
                               <img src="./assets/img/icon3.svg" alt="">
                           </span>
-                          Rooms
+                          {{ 'Rooms' | translate }}
                       </span>
                       <strong>..</strong>
                   </li>
@@ -90,7 +90,7 @@
                           <span class="icon">
                               <img src="./assets/img/icon4.svg" alt="">
                           </span>
-                          Development
+                          {{ 'Development' | translate }}
                       </span>
                       <strong>{{this.offer?.building.property_type}}</strong>
                   </li>
@@ -99,7 +99,7 @@
                           <span class="icon">
                               <img src="./assets/img/icon5.svg" alt="">
                           </span>
-                          Floor
+                          {{ 'Floor' | translate }}
                       </span>
                       <strong>..</strong>
                   </li>
@@ -108,7 +108,7 @@
                           <span class="icon">
                               <img src="./assets/img/icon6.svg" alt="">
                           </span>
-                          Year built
+                          {{ 'Year built' | translate }}
                       </span>
                       <strong>..</strong>
                   </li>
@@ -117,7 +117,7 @@
                           <span class="icon">
                               <img src="./assets/img/icon7.svg" alt="">
                           </span>
-                          Date
+                          {{ 'Date' | translate }}
                       </span>
                       <strong>..</strong>
                   </li>
@@ -130,7 +130,7 @@
                           <span class="icon">
                               <img src="./assets/img/icon8.svg" alt="">
                           </span>
-                          Seller
+                          {{ 'Seller' | translate }}
                       </span>
                       <strong>..</strong>
                   </li>
@@ -139,7 +139,7 @@
                           <span class="icon">
                               <img src="./assets/img/icon9.svg" alt="">
                           </span>
-                          Rent
+                          {{ 'Rent' | translate }}
                       </span>
                       <strong>..</strong>
                   </li>
@@ -148,7 +148,7 @@
                           <span class="icon">
                               <img src="./assets/img/icon10.svg" alt="">
                           </span>
-                          Form of ownership
+                          {{ 'Form of ownership' | translate }}
                       </span>
                       <strong>..</strong>
                   </li>
@@ -157,7 +157,7 @@
                           <span class="icon">
                               <img src="./assets/img/icon11.svg" alt="">
                           </span>
-                          State
+                          {{ 'State' | translate }}
                       </span>
                       <strong>{{this.offer?.ad.status}}</strong>
                   </li>
@@ -166,7 +166,7 @@
                           <span class="icon">
                               <img src="./assets/img/icon12.svg" alt="">
                           </span>
-                          Parking
+                          {{ 'Parking' | translate }}
                       </span>
                       <strong>..</strong>
                   </li>
@@ -175,7 +175,7 @@
                           <span class="icon">
                               <img src="./assets/img/icon13.svg" alt="">
                           </span>
-                          Heating
+                          {{ 'Heating' | translate }}
                       </span>
                       <strong>..</strong>
                   </li>
@@ -184,17 +184,17 @@
                           <span class="icon">
                               <img src="./assets/img/icon14.svg" alt="">
                           </span>
-                          Building block
+                          {{ 'Building block' | translate }}
                       </span>
                       <strong class="gray">..</strong>
                   </li>
               </ul>
           </div>
       </div>
-      <h4 class="md_title">Additional informations</h4>
+      <h4 class="md_title">{{ 'Additional informations' | translate }}</h4>
       <div class="row form-row">
           <div class="col-md-3 col-6">
-              <h5 class="sm_title">Media</h5>
+              <h5 class="sm_title">{{ 'Media' | translate }}</h5>
               <ul class="check_list">
                   <li>..</li>
                   <li>..</li>
@@ -202,7 +202,7 @@
               </ul>
           </div>
           <div class="col-md-3 col-6">
-              <h5 class="sm_title">Additional space</h5>
+              <h5 class="sm_title">{{ 'Additional space' | translate }}</h5>
               <ul class="check_list">
                   <li>..</li>
                   <li>..</li>
@@ -210,7 +210,7 @@
               </ul>
           </div>
           <div class="col-md-3 col-6">
-              <h5 class="sm_title">Fitting</h5>
+              <h5 class="sm_title">{{ 'Fitting' | translate }}</h5>
               <ul class="check_list">
                   <li>..</li>
                   <li>..</li>
@@ -222,7 +222,7 @@
               </ul>
           </div>
           <div class="col-md-3 col-6">
-              <h5 class="sm_title">Security</h5>
+              <h5 class="sm_title">{{ 'Security' | translate }}</h5>
               <ul class="check_list">
                   <li>..</li>
                   <li>..</li>
@@ -230,7 +230,7 @@
               </ul>
           </div>
       </div>
-      <h4 class="md_title pb_15">Description</h4>
+      <h4 class="md_title pb_15">{{ 'Description' | translate }}</h4>
       <p class="sm_text">
         <span class="descuttext">
           {{this.offer?.ad.description  | slice:0:300}} ...
