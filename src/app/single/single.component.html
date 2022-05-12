@@ -16,11 +16,11 @@
               </a>
           </div>
           <div class="col-sm-8 text-right">
-              <a href="#" class="button black mt_25 mr_20">
+              <a class="button black mt_25 mr_20">
                   <img src="./assets/img/love2.svg" alt="">
                   {{ 'Add to favourites' | translate }}
               </a>
-              <a href="#" class="button mt_25">
+              <a class="button mt_25">
                   <img src="./assets/img/link.svg" alt="">
                   {{ 'Open offer' | translate }}
               </a>
@@ -235,9 +235,9 @@
         <span class="descuttext">
           {{this.offer?.ad.description  | slice:0:300}} ...
         </span>
-        <span class="collapse" id="coll">{{this.offer?.ad.description}}</span></p>
+        <span *ngIf="ariaex">{{this.offer?.ad.description}}</span></p>
       <div class="text-center mt_10 pb_10">
-          <button class="toggle_btn singledescbtn" type="button" aria-expanded="false"><i class="fal fa-angle-down"></i></button>
+          <button class="toggle_btn singledescbtn" type="button" attr.aria-expanded="{{ ariaex }}" (click)="showmoredes()"><i class="fal fa-angle-down"></i></button>
       </div>
   </div>
 </main>

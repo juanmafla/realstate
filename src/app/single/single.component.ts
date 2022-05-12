@@ -46,6 +46,7 @@ export class SingleComponent implements OnInit {
   slidesStore!:any[];
   currentitem: string = '';
   loaded: boolean = false;
+  ariaex: boolean =false;
 
 
   constructor(private route: ActivatedRoute, public offerservice: OffersService) { }
@@ -74,6 +75,14 @@ export class SingleComponent implements OnInit {
   getThumbsdata(sl:any, index:any, photo:any) {
     sl.to('sl_'+index);
     this.currentitem = photo;
+  }
+
+  showmoredes() {
+    if(!this.ariaex) {
+      this.ariaex = true;
+    } else   {
+      this.ariaex = false;
+    }
   }
 
 

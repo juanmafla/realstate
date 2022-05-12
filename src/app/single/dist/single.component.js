@@ -42,6 +42,7 @@ var SingleComponent = /** @class */ (function () {
         };
         this.currentitem = '';
         this.loaded = false;
+        this.ariaex = false;
     }
     SingleComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -66,6 +67,14 @@ var SingleComponent = /** @class */ (function () {
     SingleComponent.prototype.getThumbsdata = function (sl, index, photo) {
         sl.to('sl_' + index);
         this.currentitem = photo;
+    };
+    SingleComponent.prototype.showmoredes = function () {
+        if (!this.ariaex) {
+            this.ariaex = true;
+        }
+        else {
+            this.ariaex = false;
+        }
     };
     SingleComponent = __decorate([
         core_1.Component({
