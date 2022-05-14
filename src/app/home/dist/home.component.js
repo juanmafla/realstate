@@ -11,16 +11,25 @@ var core_1 = require("@angular/core");
 var HomeComponent = /** @class */ (function () {
     function HomeComponent(offerservice) {
         this.offerservice = offerservice;
-        this.property = '';
         this.location = '';
-        this.market = '';
         this.price_from = 300000;
         this.price_to = 50000;
         this.area_from = 0;
         this.area_to = 0;
-        this.offer_type = '';
         this.number_offers = 0;
         this.loaded = false;
+        this.property_type =
+            [
+                { name: 'All properties', checked: false }
+            ];
+        this.market_select =
+            [
+                { name: 'All properties', checked: false }
+            ];
+        this.offertype_select =
+            [
+                { name: 'All properties', checked: false }
+            ];
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -44,12 +53,29 @@ var HomeComponent = /** @class */ (function () {
                     "name": "price",
                     "value": 50000,
                     "type": "greater"
-                }
+                },
             ]
         };
         this.offerservice.getSettings().subscribe(function (data) {
+            var _a;
             _this.fields = data['output'];
-            //console.log(data);
+            (_a = _this.fields) === null || _a === void 0 ? void 0 : _a.forEach(function (field) {
+                if ((field === null || field === void 0 ? void 0 : field.name) == 'property_type') {
+                    field === null || field === void 0 ? void 0 : field.allowed_values.forEach(function (value) {
+                        _this.property_type.push({ name: value.replace('_', ' ').replace('_', ' '), checked: false });
+                    });
+                }
+                if ((field === null || field === void 0 ? void 0 : field.name) == 'market') {
+                    field === null || field === void 0 ? void 0 : field.allowed_values.forEach(function (value) {
+                        _this.market_select.push({ name: value.replace('_', ' ').replace('_', ' '), checked: false });
+                    });
+                }
+                if ((field === null || field === void 0 ? void 0 : field.name) == 'offertype_select') {
+                    field === null || field === void 0 ? void 0 : field.allowed_values.forEach(function (value) {
+                        _this.offertype_select.push({ name: value.replace('_', ' ').replace('_', ' '), checked: false });
+                    });
+                }
+            });
             _this.loaded = true;
         });
         this.offerservice.getOffers(this.search).subscribe(function (data) {
@@ -78,11 +104,38 @@ var HomeComponent = /** @class */ (function () {
                     "name": "price",
                     "value": this.price_to,
                     "type": "greater"
+                },
+                {
+                    "name": "property",
+                    "value": this.property
+                },
+                {
+                    "name": "location",
+                    "value": this.location
+                },
+                {
+                    "name": "market",
+                    "value": this.market
+                },
+                {
+                    "name": "area_from",
+                    "value": this.area_from,
+                    "type": "lower"
+                },
+                {
+                    "name": "area_to",
+                    "value": this.area_to,
+                    "type": "greater"
+                },
+                {
+                    "name": "offer_type",
+                    "value": this.offer_type
                 }
             ]
         };
         this.offerservice.getOffers(Search_offers).subscribe(function (data) {
             _this.offers = data['output'];
+            console.log(Search_offers);
         });
     };
     HomeComponent.prototype.Timeorder = function () {
@@ -107,6 +160,32 @@ var HomeComponent = /** @class */ (function () {
                     "name": "price",
                     "value": this.price_to,
                     "type": "greater"
+                },
+                {
+                    "name": "property",
+                    "value": this.property
+                },
+                {
+                    "name": "location",
+                    "value": this.location
+                },
+                {
+                    "name": "market",
+                    "value": this.market
+                },
+                {
+                    "name": "area_from",
+                    "value": this.area_from,
+                    "type": "lower"
+                },
+                {
+                    "name": "area_to",
+                    "value": this.area_to,
+                    "type": "greater"
+                },
+                {
+                    "name": "offer_type",
+                    "value": this.offer_type
                 }
             ]
         };
@@ -137,6 +216,32 @@ var HomeComponent = /** @class */ (function () {
                     "name": "price",
                     "value": this.price_to,
                     "type": "greater"
+                },
+                {
+                    "name": "property",
+                    "value": this.property
+                },
+                {
+                    "name": "location",
+                    "value": this.location
+                },
+                {
+                    "name": "market",
+                    "value": this.market
+                },
+                {
+                    "name": "area_from",
+                    "value": this.area_from,
+                    "type": "lower"
+                },
+                {
+                    "name": "area_to",
+                    "value": this.area_to,
+                    "type": "greater"
+                },
+                {
+                    "name": "offer_type",
+                    "value": this.offer_type
                 }
             ]
         };
@@ -144,6 +249,21 @@ var HomeComponent = /** @class */ (function () {
             _this.offers = data['output'];
             _this.number_offers = data['output'].length;
         });
+    };
+    HomeComponent.prototype.propertylist = function (item) {
+        this.property = item;
+    };
+    HomeComponent.prototype.marketlist = function (item) {
+        this.market = item;
+    };
+    HomeComponent.prototype.offer_typelist = function (item) {
+        this.offer_type = item;
+    };
+    HomeComponent.prototype.shareCheckedList = function (item) {
+        console.log(item);
+    };
+    HomeComponent.prototype.shareIndividualCheckedList = function (item) {
+        console.log(item);
     };
     HomeComponent = __decorate([
         core_1.Component({

@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { MultiSelectDropdownComponent } from './multi-select-dropdown/multi-select-dropdown.component';
 
 
 // AoT requires an exported function for factories
@@ -28,6 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FooterComponent,
     SingleComponent,
     HomeComponent,
+    MultiSelectDropdownComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    MultiSelectDropdownComponent
+  ]
 })
 export class AppModule { }

@@ -208,7 +208,7 @@ header.sticky {
 }
 #menu>li>a.active,
 #menu>li>a:hover {
-	color: #FFA826;
+	color: #FB8D00;
 }
 
 .button,
@@ -224,8 +224,8 @@ header.sticky {
 }
 .button:hover,
 #menu>li>a.button:hover{
-	background-color: transparent;
-	color: #FB8D00;
+	background-color: #F57D00;
+  border-color: #F57D00;
 }
 .button.outline,
 #menu>li>a.button.outline{
@@ -234,7 +234,8 @@ header.sticky {
 }
 .button.outline:hover,
 #menu>li>a.button.outline:hover{
-	background-color: #FB8D00;
+  border-color: #F57D00;
+	background-color: transparent;
 	color: #212121;
 }
 .filter_box{
@@ -258,6 +259,10 @@ header.sticky {
 	line-height: 46px;
 	margin-top: 16px;
 	font-family: 'Source Sans Pro', sans-serif;
+}
+.filter_box input:hover,
+.filter_box .nice-select:hover{
+	background: #EEEEEE;
 }
 .filter_box input::placeholder{
 	color: #424242;
@@ -325,7 +330,8 @@ header.sticky {
 	border-color: #424242;
 }
 .filter_box .button.save_search:hover{
-	background-color: #000;
+	background-color: #616161;
+  border-color: #616161;
 }
 .half_gutters{
 	margin-left: -7.5px;
@@ -352,7 +358,7 @@ header.sticky {
 	margin-right: 42px;
 }
 .reset:hover{
-	color: #424242;
+	color: #FB8D00;
 }
 .filter_box .more_filter {
 	font-weight: 600;
@@ -417,6 +423,9 @@ header.sticky {
 .heart svg{
 	width: 25px;
 }
+.heart svg:hover path{
+	fill:#424242;
+}
 .filter_wrap{
 	padding-bottom: 9px;
 	padding-top: 32px;
@@ -444,6 +453,9 @@ header.sticky {
 	color: #424242;
 	border: none;
 	min-width: 160px;
+}
+.filter_wrap .dropdown-toggle:hover{
+	background: #EEEEEE;
 }
 .filter_wrap .dropdown-toggle::after{
 	display: none;
@@ -474,7 +486,7 @@ footer li a{
 	color: #FAFAFA;
 }
 footer li a:hover{
-	color: #F57D00;
+	color: #FB8D00;
 }
 /*return-to-top START CSS*/
 
@@ -505,6 +517,10 @@ footer li a:hover{
 	justify-content: center;
 	box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12);
 }
+.btn_wrap .button:hover{
+  background-color: #F57D00;
+  color:#212121;
+}
 .btn_wrap .button img,
 .btn_wrap .button i{
 	margin-right: 8px;
@@ -514,19 +530,19 @@ footer li a:hover{
 	border-color: #F5F5F5;
 }
 .button.white:hover{
-	background-color: #FB8D00;
-	border-color: #FB8D00;
-	color: #212121;
+	background-color: #EEEEEE;
+	border-color: #EEEEEE;
+	color: #424242;
 }
 .button.black{
 	background-color: #424242;
 	border-color: #424242;
-	color: #F5F5F5;
+	color: #FAFAFA;
 }
 .button.black:hover{
-	background-color: #000;
-	border-color: #000;
-	color: #F5F5F5;
+	background-color: #616161;
+	border-color: #616161;
+	color: #FAFAFA;
 }
 #sync1{
 	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2);
@@ -724,6 +740,9 @@ footer li a:hover{
 	align-items: center;
 	justify-content: center;
 }
+.toggle_btn:hover {
+  color:#FB8D00;
+}
 .toggle_btn i{
 	font-size: 140%;
 	margin-left: 8px;
@@ -752,4 +771,8 @@ footer li a:hover{
 }
 .pricem2 {
   margin-top: 3px;
+}
+
+main {
+  min-height: calc(100vh - 271px);
 }

@@ -46,19 +46,19 @@
       </owl-carousel-o>
       <div class="row">
           <div class="col-lg-7 mt_10">
-              <h2 class="title">{{this.offer?.ad.title}}</h2>
-              <p class="sub_title mt_10">{{this.offer?.ad.site}}</p>
+              <h2 class="title" *ngIf="this.offer?.ad.title">{{this.offer?.ad.title}}</h2>
+              <p class="sub_title mt_10" *ngIf="this.offer?.ad.site">{{this.offer?.ad.site}}</p>
           </div>
           <div class="col-lg-5 text-sm-right mt_10">
-              <h2 class="title">{{this.offer?.ad.price.price}} {{this.offer?.ad.price.currency |uppercase}}</h2>
-              <p class="sub_title pricem2">{{this.offer?.ad.price.price_per_m2}} {{this.offer?.ad.price.currency |uppercase}}{{ '/m²' | translate }}</p>
+              <h2 class="title" *ngIf="this.offer?.ad.price.price">{{this.offer?.ad.price.price}} {{this.offer?.ad.price.currency |uppercase}}</h2>
+              <p class="sub_title pricem2" *ngIf="this.offer?.ad.price.price_per_m2">{{this.offer?.ad.price.price_per_m2}} {{this.offer?.ad.price.currency |uppercase}}{{ '/m²' | translate }}</p>
           </div>
       </div>
       <h4 class="md_title">{{ 'Offer details' | translate }}</h4>
       <div class="row">
           <div class="col-md-6 pr-lg-5">
               <ul class="details_list">
-                  <li>
+                  <li *ngIf="this.offer?.building.properties.area">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon1.svg" alt="">
@@ -67,7 +67,7 @@
                       </span>
                       <strong>{{this.offer?.building.properties.area}} m²</strong>
                   </li>
-                  <li>
+                  <li *ngIf="this.offer?.building.features.type">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon2.svg" alt="">
@@ -76,7 +76,7 @@
                       </span>
                       <strong>{{this.offer?.building.features.type}}</strong>
                   </li>
-                  <li>
+                  <li *ngIf="this.offer?.rooms">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon3.svg" alt="">
@@ -85,7 +85,7 @@
                       </span>
                       <strong>..</strong>
                   </li>
-                  <li>
+                  <li *ngIf="this.offer?.building.property_type">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon4.svg" alt="">
@@ -94,7 +94,7 @@
                       </span>
                       <strong>{{this.offer?.building.property_type}}</strong>
                   </li>
-                  <li>
+                  <li *ngIf="this.offer?.floor">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon5.svg" alt="">
@@ -103,7 +103,7 @@
                       </span>
                       <strong>..</strong>
                   </li>
-                  <li>
+                  <li *ngIf="this.offer?.yearb">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon6.svg" alt="">
@@ -112,7 +112,7 @@
                       </span>
                       <strong>..</strong>
                   </li>
-                  <li>
+                  <li *ngIf="this.offer?.date">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon7.svg" alt="">
@@ -125,7 +125,7 @@
           </div>
           <div class="col-md-6 pl-lg-5">
               <ul class="details_list">
-                  <li>
+                  <li *ngIf="this.offer?.seller">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon8.svg" alt="">
@@ -134,7 +134,7 @@
                       </span>
                       <strong>..</strong>
                   </li>
-                  <li>
+                  <li *ngIf="this.offer?.rent">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon9.svg" alt="">
@@ -143,7 +143,7 @@
                       </span>
                       <strong>..</strong>
                   </li>
-                  <li>
+                  <li *ngIf="this.offer?.form">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon10.svg" alt="">
@@ -152,7 +152,7 @@
                       </span>
                       <strong>..</strong>
                   </li>
-                  <li>
+                  <li *ngIf="this.offer?.ad.status">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon11.svg" alt="">
@@ -161,7 +161,7 @@
                       </span>
                       <strong>{{this.offer?.ad.status}}</strong>
                   </li>
-                  <li>
+                  <li *ngIf="this.offer?.parking">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon12.svg" alt="">
@@ -170,7 +170,7 @@
                       </span>
                       <strong>..</strong>
                   </li>
-                  <li>
+                  <li *ngIf="this.offer?.heating">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon13.svg" alt="">
@@ -179,7 +179,7 @@
                       </span>
                       <strong>..</strong>
                   </li>
-                  <li>
+                  <li *ngIf="this.offer?.buildblock">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon14.svg" alt="">
@@ -193,7 +193,7 @@
       </div>
       <h4 class="md_title">{{ 'Additional informations' | translate }}</h4>
       <div class="row form-row">
-          <div class="col-md-3 col-6">
+          <div class="col-md-3 col-6" *ngIf="this.offer?.media">
               <h5 class="sm_title">{{ 'Media' | translate }}</h5>
               <ul class="check_list">
                   <li>..</li>
@@ -201,7 +201,7 @@
                   <li>..</li>
               </ul>
           </div>
-          <div class="col-md-3 col-6">
+          <div class="col-md-3 col-6" *ngIf="this.offer?.addspaces">
               <h5 class="sm_title">{{ 'Additional space' | translate }}</h5>
               <ul class="check_list">
                   <li>..</li>
@@ -209,7 +209,7 @@
                   <li>..</li>
               </ul>
           </div>
-          <div class="col-md-3 col-6">
+          <div class="col-md-3 col-6" *ngIf="this.offer?.fitting">
               <h5 class="sm_title">{{ 'Fitting' | translate }}</h5>
               <ul class="check_list">
                   <li>..</li>
@@ -221,7 +221,7 @@
                   <li>..</li>
               </ul>
           </div>
-          <div class="col-md-3 col-6">
+          <div class="col-md-3 col-6" *ngIf="this.offer?.security">
               <h5 class="sm_title">{{ 'Security' | translate }}</h5>
               <ul class="check_list">
                   <li>..</li>
@@ -230,13 +230,13 @@
               </ul>
           </div>
       </div>
-      <h4 class="md_title pb_15">{{ 'Description' | translate }}</h4>
-      <p class="sm_text">
+      <h4 class="md_title pb_15" *ngIf="this.offer?.ad.description">{{ 'Description' | translate }}</h4>
+      <p class="sm_text"  *ngIf="this.offer?.ad.description">
         <span class="descuttext">
           {{this.offer?.ad.description  | slice:0:300}} ...
         </span>
         <span *ngIf="ariaex">{{this.offer?.ad.description}}</span></p>
-      <div class="text-center mt_10 pb_10">
+      <div class="text-center mt_10 pb_10"  *ngIf="this.offer?.ad.description">
           <button class="toggle_btn singledescbtn" type="button" attr.aria-expanded="{{ ariaex }}" (click)="showmoredes()"><i class="fal fa-angle-down"></i></button>
       </div>
   </div>
