@@ -18,18 +18,15 @@ var HomeComponent = /** @class */ (function () {
         this.area_to = 0;
         this.number_offers = 0;
         this.loaded = false;
+        this.sortby = 'Sort by';
         this.property_type =
             [
-                { name: 'All properties', checked: false }
+                { name: 'Select All', checked: false, multi: false }
             ];
         this.market_select =
-            [
-                { name: 'All properties', checked: false }
-            ];
+            [];
         this.offertype_select =
-            [
-                { name: 'All properties', checked: false }
-            ];
+            [];
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -62,17 +59,17 @@ var HomeComponent = /** @class */ (function () {
             (_a = _this.fields) === null || _a === void 0 ? void 0 : _a.forEach(function (field) {
                 if ((field === null || field === void 0 ? void 0 : field.name) == 'property_type') {
                     field === null || field === void 0 ? void 0 : field.allowed_values.forEach(function (value) {
-                        _this.property_type.push({ name: value.replace('_', ' ').replace('_', ' '), checked: false });
+                        _this.property_type.push({ name: value.replace('_', ' ').replace('_', ' '), checked: false, multi: false });
                     });
                 }
                 if ((field === null || field === void 0 ? void 0 : field.name) == 'market') {
                     field === null || field === void 0 ? void 0 : field.allowed_values.forEach(function (value) {
-                        _this.market_select.push({ name: value.replace('_', ' ').replace('_', ' '), checked: false });
+                        _this.market_select.push({ name: value.replace('_', ' ').replace('_', ' '), checked: false, multi: true });
                     });
                 }
                 if ((field === null || field === void 0 ? void 0 : field.name) == 'offertype_select') {
                     field === null || field === void 0 ? void 0 : field.allowed_values.forEach(function (value) {
-                        _this.offertype_select.push({ name: value.replace('_', ' ').replace('_', ' '), checked: false });
+                        _this.offertype_select.push({ name: value.replace('_', ' ').replace('_', ' '), checked: false, multi: true });
                     });
                 }
             });
@@ -140,6 +137,7 @@ var HomeComponent = /** @class */ (function () {
     };
     HomeComponent.prototype.Timeorder = function () {
         var _this = this;
+        this.sortby = 'Time';
         var Search_offers = {
             "query": [
                 {
@@ -196,6 +194,7 @@ var HomeComponent = /** @class */ (function () {
     };
     HomeComponent.prototype.Pricingorder = function () {
         var _this = this;
+        this.sortby = 'Pricing';
         var Search_offers = {
             "query": [
                 {

@@ -13,13 +13,13 @@ var OffersService = /** @class */ (function () {
         this.http = http;
     }
     OffersService.prototype.getOffer = function (link_id) {
-        return this.http.post('/offer', link_id);
+        return this.http.post('http://127.0.0.1:5000/offer', link_id);
     };
     OffersService.prototype.getOffers = function (search) {
-        return this.http.post('/offers', search);
+        return this.http.post('http://127.0.0.1:5000/offers', search);
     };
     OffersService.prototype.getSettings = function () {
-        return this.http.post('/settings', '');
+        return this.http.post('http://127.0.0.1:5000/settings', '');
     };
     OffersService = __decorate([
         core_1.Injectable({

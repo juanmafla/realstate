@@ -23,6 +23,13 @@
 .drop-toggle:hover{
 background-color: #EEEEEE;
 }
+.drop-toggle.inpact{
+  background-color: #E0E0E0;
+}
+.drop-toggle.disabled{
+  background-color: #F5F5F5;
+  color: #9E9E9E;
+}
 .drop-toggle i{
   float:right;
   margin-top: 15px;
@@ -53,8 +60,7 @@ background-color: #EEEEEE;
   display:inline-block;
 }
 .drop-show-row {
-  display: grid;
-  grid-template-columns: minmax(16px, 16px) auto;
+  width: 100%;
   column-gap: 11px;
   background-color: #F5F5F5;
   padding-left: 16px;
@@ -63,7 +69,6 @@ background-color: #EEEEEE;
   padding-bottom: 14px;
   align-items: center;
   box-sizing: border-box;
-
 }
 
 .drop-show-row.cactive {
@@ -78,6 +83,37 @@ background-color: #EEEEEE;
   background-color: #E0E0E0;
 }
 
+.drop-show-row.cactive.isall {
+  background-color: #F5F5F5;
+  color: #9E9E9E;
+}
+
+.drop-show-row.cactive.isall .drop-show-row-icon {
+  width: 0;
+}
+
 .drop-show-row .drop-show-row-text {
   font-size: 14px;
+}
+
+.drop-show-row-icon {
+  width: 0;
+  max-width: 16px;
+  float: left;
+  transition: 0.1s;
+  margin-right: 11px;
+}
+
+.drop-show-row-icon svg {
+  margin-top: -5px;
+  opacity: 0;
+}
+
+.drop-show-row.cactive .drop-show-row-icon {
+  width: 16px;
+  transition: 0.1s;
+}
+
+.drop-show-row.cactive .drop-show-row-icon svg {
+  opacity: 1;
 }

@@ -206,9 +206,17 @@ header.sticky {
 	letter-spacing: 1px;
 	color: #FAFAFA;
 }
-#menu>li>a.active,
+
 #menu>li>a:hover {
-	color: #FB8D00;
+	color: #FFB84D;
+}
+
+#menu>li>a.active {
+  color: #FFA826;
+}
+
+#menu>li>a.disabled {
+  color: #424242;
 }
 
 .button,
@@ -227,6 +235,18 @@ header.sticky {
 	background-color: #F57D00;
   border-color: #F57D00;
 }
+.button:active,
+#menu>li>a.button:active{
+	background-color: #EF6D00;
+  border-color: #EF6D00;
+  color:#212121;
+}
+.button:disabled,
+#menu>li>a.button:disabled{
+	background-color: #FFCD80;
+  border-color: #FFCD80;
+  color:#757575;
+}
 .button.outline,
 #menu>li>a.button.outline{
 	background-color: transparent;
@@ -236,7 +256,19 @@ header.sticky {
 #menu>li>a.button.outline:hover{
   border-color: #F57D00;
 	background-color: transparent;
-	color: #212121;
+	color: #F57D00;
+}
+.button.outline:active,
+#menu>li>a.button.outline:active{
+  border-color: #EF6D00;
+	background-color: transparent;
+	color: #EF6D00;
+}
+.button.outline:disabled,
+#menu>li>a.button.outline:disabled{
+  border-color: #FFCD80;
+	background-color: transparent;
+	color: #FFCD80;
 }
 .filter_box{
 	background: #FAFAFA;
@@ -333,6 +365,14 @@ header.sticky {
 	background-color: #616161;
   border-color: #616161;
 }
+.filter_box .button.save_search:active{
+	background-color: #F5F5F5;
+  border-color: #F5F5F5;
+}
+.filter_box .button.save_search:disabled{
+	background-color: #BDBDBD;
+  border-color: #BDBDBD;
+}
 .half_gutters{
 	margin-left: -7.5px;
 	margin-right: -7.5px;
@@ -360,6 +400,12 @@ header.sticky {
 .reset:hover{
 	color: #FB8D00;
 }
+.reset:active{
+	color: #FF9800;
+}
+.reset:disabled{
+	color: #FFCD80;
+}
 .filter_box .more_filter {
 	font-weight: 600;
 	color: #9E9E9E;
@@ -377,11 +423,26 @@ header.sticky {
 	border-radius: 12px;
 	background: #F5F5F5;
 	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
+  max-height: 272px;
+  min-height: 272px;
+}
+
+@media (max-width: 767.98px) {
+  .room_box{
+    max-height: unset;
+    min-height: unset;
+  }
 }
 .room_img{
 	width: 360px;
 	flex-shrink: 0;
 	display: block;
+}
+@media (max-width: 767.98px) {
+  .room_img img{
+    max-height: 272px;
+    min-height: 272px;
+  }
 }
 .room_img img{
 	height: 100%;
@@ -488,6 +549,12 @@ footer li a{
 footer li a:hover{
 	color: #FB8D00;
 }
+footer li a:active{
+	color: #FFA826;
+}
+footer li a:disabled{
+	color: #424242;
+}
 /*return-to-top START CSS*/
 
 .back-to-top {
@@ -534,6 +601,16 @@ footer li a:hover{
 	border-color: #EEEEEE;
 	color: #424242;
 }
+.button.white:active{
+	background-color: #E0E0E0;
+	border-color: #E0E0E0;
+	color: #424242;
+}
+.button.white:disabled{
+	background-color: #F5F5F5;
+	border-color: #F5F5F5;
+	color: #9E9E9E;
+}
 .button.black{
 	background-color: #424242;
 	border-color: #424242;
@@ -542,6 +619,16 @@ footer li a:hover{
 .button.black:hover{
 	background-color: #616161;
 	border-color: #616161;
+	color: #FAFAFA;
+}
+.button.black:active{
+	background-color: #757575;
+	border-color: #757575;
+	color: #FAFAFA;
+}
+.button.black:disabled{
+	background-color: #BDBDBD;
+	border-color: #BDBDBD;
 	color: #FAFAFA;
 }
 #sync1{
@@ -742,6 +829,12 @@ footer li a:hover{
 }
 .toggle_btn:hover {
   color:#FB8D00;
+}
+.toggle_btn:active {
+  color:#FF9800;
+}
+.toggle_btn:disabled {
+  color:#FFCD80;
 }
 .toggle_btn i{
 	font-size: 140%;

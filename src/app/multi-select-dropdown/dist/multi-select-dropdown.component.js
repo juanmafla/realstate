@@ -13,18 +13,33 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
         this.shareCheckedList = new core_1.EventEmitter();
         this.shareIndividualCheckedList = new core_1.EventEmitter();
         this.currentSelected = {};
+        this.isall = false;
         this.checkedList = [];
         this.list = [];
         this.currentSelected = {};
     }
-    MultiSelectDropdownComponent.prototype.getSelectedValue = function (status, value) {
+    MultiSelectDropdownComponent.prototype.getSelectedValue = function (status, value, multi, i) {
         var _this = this;
-        if (status) {
-            this.checkedList.push(value);
-            if (value == 'All properties') {
+        if (!status) {
+            if (!multi) {
                 this.checkedList = [];
+                this.checkedList.push(value);
                 this.list.forEach(function (element) {
-                    if (element.name != 'All properties') {
+                    if (element.name != value) {
+                        element.checked = false;
+                    }
+                });
+                this.list[i].checked = true;
+            }
+            else {
+                this.checkedList.push(value);
+                this.list[i].checked = true;
+            }
+            if (value == 'Select All') {
+                this.checkedList = [];
+                this.isall = true;
+                this.list.forEach(function (element) {
+                    if (element.name != 'Select All') {
                         _this.checkedList.push(element.name);
                         element.checked = true;
                     }
@@ -32,26 +47,37 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
             }
         }
         else {
-            var index = this.checkedList.indexOf(value);
-            this.checkedList.splice(index, 1);
-            this.list.forEach(function (element) {
-                if (element.name == 'All properties') {
-                    if (element.checked == true) {
-                        element.checked = false;
-                    }
-                }
-            });
-            if (value == 'All properties') {
+            if (this.list[0].name == 'Select All' && this.list[0].checked) {
+                this.isall = false;
                 this.list.forEach(function (element) {
-                    if (element.name != 'All properties') {
-                        element.checked = false;
-                        var index = _this.checkedList.indexOf(element.name);
-                        _this.checkedList.splice(index, 1);
-                    }
+                    _this.checkedList = [];
+                    element.checked = false;
+                });
+                this.checkedList.push(value);
+                this.list[i].checked = true;
+            }
+            else {
+                this.checkedList.splice(i, 1);
+                this.list[i].checked = false;
+            }
+            if (value == 'Select All') {
+                this.isall = false;
+                this.list.forEach(function (element) {
+                    element.checked = false;
+                    _this.checkedList = [];
                 });
             }
         }
         this.currentSelected = { checked: status, name: value };
+        if (value == 'Select All') {
+            this.showonselect = 'All properties';
+        }
+        else if (this.list.length == this.checkedList.length) {
+            this.showonselect = 'All';
+        }
+        else {
+            this.showonselect = value;
+        }
         //share checked list
         this.shareCheckedlist();
         //share individual selected item

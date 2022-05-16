@@ -23,20 +23,17 @@ export class HomeComponent implements OnInit {
   offer_type: any;
   number_offers: number = 0;
   loaded: boolean = false;
+  sortby= 'Sort by';
 
   constructor(public offerservice: OffersService) {
     this.property_type =
       [
-        {name :'All properties',checked : false}
+        {name :'Select All',checked : false, multi: false}
       ];
     this.market_select =
-      [
-        {name :'All properties',checked : false}
-      ]
+      [      ]
     this.offertype_select =
-      [
-        {name :'All properties',checked : false}
-      ]
+      [   ]
    }
 
   ngOnInit(): void {
@@ -96,17 +93,17 @@ export class HomeComponent implements OnInit {
       this.fields?.forEach(field => {
         if(field?.name == 'property_type'){
           field?.allowed_values.forEach(value => {
-              this.property_type.push({name: value.replace('_', ' ').replace('_', ' '), checked:false});
+              this.property_type.push({name: value.replace('_', ' ').replace('_', ' '), checked:false, multi: false});
           });
         }
         if(field?.name == 'market'){
           field?.allowed_values.forEach(value => {
-              this.market_select.push({name: value.replace('_', ' ').replace('_', ' '), checked:false});
+              this.market_select.push({name: value.replace('_', ' ').replace('_', ' '), checked:false, multi: true});
           });
         }
         if(field?.name == 'offertype_select'){
           field?.allowed_values.forEach(value => {
-              this.offertype_select.push({name: value.replace('_', ' ').replace('_', ' '), checked:false});
+              this.offertype_select.push({name: value.replace('_', ' ').replace('_', ' '), checked:false, multi: true});
           });
         }
       });
@@ -177,6 +174,7 @@ export class HomeComponent implements OnInit {
   }
 
   Timeorder() {
+    this.sortby='Time';
     const Search_offers = {
       "query": [
         {
@@ -234,6 +232,7 @@ export class HomeComponent implements OnInit {
   }
 
   Pricingorder() {
+    this.sortby='Pricing';
     const Search_offers = {
       "query": [
         {

@@ -127,8 +127,8 @@
               </div>
               <div class="col-md-5 col-sm-7 d-flex align-items-center justify-content-end mt_32">
                   <button class="reset" type="reset">{{ 'Clear filters' | translate }}</button>
-                  <select nice-select class="mt-0 more_filter">
-                      <option></option>
+                  <select nice-select class="mt-0 more_filter" disabled>
+                      <option>More filters</option>
                   </select>
               </div>
               <div class="col-md-3 mt_32">
@@ -141,7 +141,7 @@
           <div class="dropdown">
               <button class="dropdown-toggle" type="button" data-toggle="dropdown">
                   <img src="./assets/img/filter.svg" alt="">
-                  {{ 'Sort by' | translate }}
+                  {{this.sortby}}
               </button>
               <ul class="dropdown-menu">
                   <li><a class="dropdown-item"  (click)="Timeorder()">{{ 'Time' | translate }}</a></li>
