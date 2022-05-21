@@ -16,10 +16,10 @@ export class HomeComponent implements OnInit {
   property:any;
   location: string = '';
   market: any;
-  price_from: number = 300000;
-  price_to: number = 50000;
-  area_from: number = 0;
-  area_to: number = 0;
+  price_from: any = 'From';
+  price_to: any = 'To';
+  area_from: any = 'From';
+  area_to: any = 'To';
   offer_type: any;
   number_offers: number = 0;
   loaded: boolean = false;

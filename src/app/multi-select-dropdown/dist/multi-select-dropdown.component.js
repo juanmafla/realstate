@@ -21,6 +21,7 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
     MultiSelectDropdownComponent.prototype.getSelectedValue = function (status, value, multi, i) {
         var _this = this;
         if (!status) {
+            console.log('ok');
             if (!multi) {
                 this.checkedList = [];
                 this.checkedList.push(value);
@@ -30,10 +31,14 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
                     }
                 });
                 this.list[i].checked = true;
+                console.log('aa2');
             }
             else {
-                this.checkedList.push(value);
-                this.list[i].checked = true;
+                if (!this.checkedList.includes(value)) {
+                    this.checkedList.push(value);
+                    this.list[i].checked = true;
+                    console.log('aa');
+                }
             }
             if (value == 'Select All') {
                 this.checkedList = [];
@@ -44,9 +49,11 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
                         element.checked = true;
                     }
                 });
+                console.log('aa3');
             }
         }
         else {
+            console.log('ok2');
             if (this.list[0].name == 'Select All' && this.list[0].checked) {
                 this.isall = false;
                 this.list.forEach(function (element) {
@@ -55,10 +62,12 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
                 });
                 this.checkedList.push(value);
                 this.list[i].checked = true;
+                console.log('aa4');
             }
             else {
                 this.checkedList.splice(i, 1);
                 this.list[i].checked = false;
+                console.log('aa5');
             }
             if (value == 'Select All') {
                 this.isall = false;
@@ -66,14 +75,22 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
                     element.checked = false;
                     _this.checkedList = [];
                 });
+                console.log('aa6');
             }
         }
         this.currentSelected = { checked: status, name: value };
+        console.log(this.list.length);
+        console.log(this.list);
+        console.log(this.checkedList.length);
+        console.log(this.checkedList);
         if (value == 'Select All') {
             this.showonselect = 'All properties';
         }
         else if (this.list.length == this.checkedList.length) {
             this.showonselect = 'All';
+        }
+        else if (this.showonselect == value) {
+            this.showonselect = 'Select';
         }
         else {
             this.showonselect = value;

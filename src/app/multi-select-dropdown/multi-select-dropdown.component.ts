@@ -26,6 +26,7 @@ export class MultiSelectDropdownComponent {
 
        getSelectedValue(status:Boolean,value:String, multi:String, i:number){
         if(!status){
+          console.log('ok');
           if(!multi) {
             this.checkedList = [];
             this.checkedList.push(value);
@@ -35,9 +36,13 @@ export class MultiSelectDropdownComponent {
               }
             });
             this.list[i].checked= true;
+            console.log('aa2');
           } else {
-            this.checkedList.push(value);
-            this.list[i].checked= true;
+            if(!this.checkedList.includes(value)){
+              this.checkedList.push(value);
+              this.list[i].checked= true;
+              console.log('aa');
+            }
           }
 
           if(value == 'Select All'){
@@ -49,8 +54,10 @@ export class MultiSelectDropdownComponent {
                 element.checked = true;
               }
             });
+            console.log('aa3');
           }
         }else{
+          console.log('ok2');
             if(this.list[0].name=='Select All' && this.list[0].checked) {
 
               this.isall= false;
@@ -60,9 +67,11 @@ export class MultiSelectDropdownComponent {
               });
               this.checkedList.push(value);
               this.list[i].checked= true;
+              console.log('aa4');
             } else {
               this.checkedList.splice(i,1);
               this.list[i].checked= false;
+              console.log('aa5');
             }
 
             if(value == 'Select All'){
@@ -71,16 +80,22 @@ export class MultiSelectDropdownComponent {
                     element.checked = false;
                     this.checkedList = [];
               });
+              console.log('aa6');
             }
         }
 
         this.currentSelected = {checked : status,name:value};
 
-
+        console.log(this.list.length);
+        console.log(this.list);
+        console.log(this.checkedList.length);
+        console.log(this.checkedList);
         if(value=='Select All'){
           this.showonselect= 'All properties';
         } else if(this.list.length == this.checkedList.length) {
           this.showonselect= 'All';
+        } else if(this.showonselect==value) {
+          this.showonselect='Select';
         } else {
           this.showonselect=value;
         }

@@ -12,10 +12,10 @@ var HomeComponent = /** @class */ (function () {
     function HomeComponent(offerservice) {
         this.offerservice = offerservice;
         this.location = '';
-        this.price_from = 300000;
-        this.price_to = 50000;
-        this.area_from = 0;
-        this.area_to = 0;
+        this.price_from = 'From';
+        this.price_to = 'To';
+        this.area_from = 'From';
+        this.area_to = 'To';
         this.number_offers = 0;
         this.loaded = false;
         this.sortby = 'Sort by';
