@@ -11,22 +11,25 @@ var core_1 = require("@angular/core");
 var HomeComponent = /** @class */ (function () {
     function HomeComponent(offerservice) {
         this.offerservice = offerservice;
+        this.property = [];
         this.location = '';
+        this.market = [];
         this.price_from = 'From';
         this.price_to = 'To';
         this.area_from = 'From';
         this.area_to = 'To';
+        this.offer_type = [];
         this.number_offers = 0;
         this.loaded = false;
         this.sortby = 'Sort by';
         this.property_type =
             [
-                { name: 'Select All', checked: false, multi: false }
+                { name: 'Select All', checked: true, multi: false }
             ];
         this.market_select =
-            [];
+            [{ name: 'Select All', checked: true, multi: true }];
         this.offertype_select =
-            [];
+            [{ name: 'Select All', checked: true, multi: true }];
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -59,17 +62,23 @@ var HomeComponent = /** @class */ (function () {
             (_a = _this.fields) === null || _a === void 0 ? void 0 : _a.forEach(function (field) {
                 if ((field === null || field === void 0 ? void 0 : field.name) == 'property_type') {
                     field === null || field === void 0 ? void 0 : field.allowed_values.forEach(function (value) {
-                        _this.property_type.push({ name: value.replace('_', ' ').replace('_', ' '), checked: false, multi: false });
+                        var _a;
+                        _this.property_type.push({ name: value.replace('_', ' ').replace('_', ' '), checked: true, multi: false });
+                        (_a = _this.property) === null || _a === void 0 ? void 0 : _a.push(value);
                     });
                 }
                 if ((field === null || field === void 0 ? void 0 : field.name) == 'market') {
                     field === null || field === void 0 ? void 0 : field.allowed_values.forEach(function (value) {
-                        _this.market_select.push({ name: value.replace('_', ' ').replace('_', ' '), checked: false, multi: true });
+                        var _a;
+                        _this.market_select.push({ name: value.replace('_', ' ').replace('_', ' '), checked: true, multi: true });
+                        (_a = _this.market) === null || _a === void 0 ? void 0 : _a.push(value);
                     });
                 }
                 if ((field === null || field === void 0 ? void 0 : field.name) == 'offertype_select') {
                     field === null || field === void 0 ? void 0 : field.allowed_values.forEach(function (value) {
-                        _this.offertype_select.push({ name: value.replace('_', ' ').replace('_', ' '), checked: false, multi: true });
+                        var _a;
+                        _this.offertype_select.push({ name: value.replace('_', ' ').replace('_', ' '), checked: true, multi: true });
+                        (_a = _this.offer_type) === null || _a === void 0 ? void 0 : _a.push(value);
                     });
                 }
             });

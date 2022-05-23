@@ -13,15 +13,18 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
         this.shareCheckedList = new core_1.EventEmitter();
         this.shareIndividualCheckedList = new core_1.EventEmitter();
         this.currentSelected = {};
+        this.showonselect = 'All';
         this.isall = false;
         this.checkedList = [];
         this.list = [];
         this.currentSelected = {};
+        this.listname = '';
     }
+    MultiSelectDropdownComponent.prototype.ngOnInit = function () {
+    };
     MultiSelectDropdownComponent.prototype.getSelectedValue = function (status, value, multi, i) {
         var _this = this;
         if (!status) {
-            console.log('ok');
             if (!multi) {
                 this.checkedList = [];
                 this.checkedList.push(value);
@@ -31,13 +34,16 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
                     }
                 });
                 this.list[i].checked = true;
-                console.log('aa2');
             }
             else {
                 if (!this.checkedList.includes(value)) {
                     this.checkedList.push(value);
                     this.list[i].checked = true;
-                    console.log('aa');
+                }
+                else {
+                    var valin = this.checkedList.indexOf(value);
+                    this.checkedList.splice(valin, 1);
+                    this.list[i].checked = false;
                 }
             }
             if (value == 'Select All') {
@@ -49,11 +55,9 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
                         element.checked = true;
                     }
                 });
-                console.log('aa3');
             }
         }
         else {
-            console.log('ok2');
             if (this.list[0].name == 'Select All' && this.list[0].checked) {
                 this.isall = false;
                 this.list.forEach(function (element) {
@@ -62,12 +66,11 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
                 });
                 this.checkedList.push(value);
                 this.list[i].checked = true;
-                console.log('aa4');
             }
             else {
-                this.checkedList.splice(i, 1);
+                var valin = this.checkedList.indexOf(value);
+                this.checkedList.splice(valin, 1);
                 this.list[i].checked = false;
-                console.log('aa5');
             }
             if (value == 'Select All') {
                 this.isall = false;
@@ -75,25 +78,22 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
                     element.checked = false;
                     _this.checkedList = [];
                 });
-                console.log('aa6');
             }
         }
         this.currentSelected = { checked: status, name: value };
-        console.log(this.list.length);
-        console.log(this.list);
-        console.log(this.checkedList.length);
-        console.log(this.checkedList);
-        if (value == 'Select All') {
-            this.showonselect = 'All properties';
-        }
-        else if (this.list.length == this.checkedList.length) {
+        if (value == 'Select All' && this.checkedList.length > 0) {
             this.showonselect = 'All';
         }
-        else if (this.showonselect == value) {
+        else if (this.checkedList.length == 0) {
             this.showonselect = 'Select';
         }
         else {
-            this.showonselect = value;
+            if (this.checkedList.includes(value)) {
+                this.showonselect = value;
+            }
+            else {
+                this.showonselect = this.checkedList[0];
+            }
         }
         //share checked list
         this.shareCheckedlist();
@@ -109,6 +109,9 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
     __decorate([
         core_1.Input()
     ], MultiSelectDropdownComponent.prototype, "list");
+    __decorate([
+        core_1.Input()
+    ], MultiSelectDropdownComponent.prototype, "listname");
     __decorate([
         core_1.Output()
     ], MultiSelectDropdownComponent.prototype, "shareCheckedList");

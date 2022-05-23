@@ -8,6 +8,7 @@ import {Component,Input,Output,EventEmitter} from '@angular/core';
 })
 export class MultiSelectDropdownComponent {
   @Input() list:any[];
+  @Input() listname:any;
 
     @Output() shareCheckedList = new EventEmitter();
     @Output() shareIndividualCheckedList = new EventEmitter();
@@ -15,18 +16,21 @@ export class MultiSelectDropdownComponent {
     showDropDown: any;
     checkedList : any[];
     currentSelected:any ={};
-    showonselect: any;
+    showonselect: any = 'All';
     isall: boolean= false;
 
   constructor() {
     this.checkedList = [];
     this.list = [];
     this.currentSelected = {};
+    this.listname='';
+   }
+
+   ngOnInit(): void {
    }
 
        getSelectedValue(status:Boolean,value:String, multi:String, i:number){
         if(!status){
-          console.log('ok');
           if(!multi) {
             this.checkedList = [];
             this.checkedList.push(value);
@@ -36,12 +40,14 @@ export class MultiSelectDropdownComponent {
               }
             });
             this.list[i].checked= true;
-            console.log('aa2');
           } else {
             if(!this.checkedList.includes(value)){
               this.checkedList.push(value);
               this.list[i].checked= true;
-              console.log('aa');
+            } else {
+              let valin=this.checkedList.indexOf(value);
+              this.checkedList.splice(valin,1);
+              this.list[i].checked= false;
             }
           }
 
@@ -54,10 +60,9 @@ export class MultiSelectDropdownComponent {
                 element.checked = true;
               }
             });
-            console.log('aa3');
           }
-        }else{
-          console.log('ok2');
+        } else {
+
             if(this.list[0].name=='Select All' && this.list[0].checked) {
 
               this.isall= false;
@@ -67,11 +72,12 @@ export class MultiSelectDropdownComponent {
               });
               this.checkedList.push(value);
               this.list[i].checked= true;
-              console.log('aa4');
+
             } else {
-              this.checkedList.splice(i,1);
+              let valin=this.checkedList.indexOf(value);
+              this.checkedList.splice(valin,1);
               this.list[i].checked= false;
-              console.log('aa5');
+
             }
 
             if(value == 'Select All'){
@@ -80,24 +86,22 @@ export class MultiSelectDropdownComponent {
                     element.checked = false;
                     this.checkedList = [];
               });
-              console.log('aa6');
+
             }
         }
 
         this.currentSelected = {checked : status,name:value};
+        if(value=='Select All' && this.checkedList.length > 0){
+          this.showonselect = 'All';
+        } else if(this.checkedList.length == 0)  {
+          this.showonselect= 'Select';
+        } else  {
+          if(this.checkedList.includes(value)){
+            this.showonselect= value;
+          } else {
+            this.showonselect= this.checkedList[0];
+          }
 
-        console.log(this.list.length);
-        console.log(this.list);
-        console.log(this.checkedList.length);
-        console.log(this.checkedList);
-        if(value=='Select All'){
-          this.showonselect= 'All properties';
-        } else if(this.list.length == this.checkedList.length) {
-          this.showonselect= 'All';
-        } else if(this.showonselect==value) {
-          this.showonselect='Select';
-        } else {
-          this.showonselect=value;
         }
 
         //share checked list

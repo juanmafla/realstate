@@ -13,14 +13,14 @@ export class HomeComponent implements OnInit {
   search: any;
   fields: any;
   offers: any;
-  property:any;
+  property:any[]=[];
   location: string = '';
-  market: any;
+  market: any[]=[];
   price_from: any = 'From';
   price_to: any = 'To';
   area_from: any = 'From';
   area_to: any = 'To';
-  offer_type: any;
+  offer_type: any[]=[];
   number_offers: number = 0;
   loaded: boolean = false;
   sortby= 'Sort by';
@@ -28,12 +28,12 @@ export class HomeComponent implements OnInit {
   constructor(public offerservice: OffersService) {
     this.property_type =
       [
-        {name :'Select All',checked : false, multi: false}
+        {name :'Select All',checked : true, multi: false}
       ];
     this.market_select =
-      [      ]
+      [ {name :'Select All',checked : true, multi: true} ]
     this.offertype_select =
-      [   ]
+      [ {name :'Select All',checked : true, multi: true}  ]
    }
 
   ngOnInit(): void {
@@ -93,17 +93,20 @@ export class HomeComponent implements OnInit {
       this.fields?.forEach(field => {
         if(field?.name == 'property_type'){
           field?.allowed_values.forEach(value => {
-              this.property_type.push({name: value.replace('_', ' ').replace('_', ' '), checked:false, multi: false});
+              this.property_type.push({name: value.replace('_', ' ').replace('_', ' '), checked:true, multi: false});
+              this.property?.push(value);
           });
         }
         if(field?.name == 'market'){
           field?.allowed_values.forEach(value => {
-              this.market_select.push({name: value.replace('_', ' ').replace('_', ' '), checked:false, multi: true});
+              this.market_select.push({name: value.replace('_', ' ').replace('_', ' '), checked:true, multi: true});
+              this.market?.push(value);
           });
         }
         if(field?.name == 'offertype_select'){
           field?.allowed_values.forEach(value => {
-              this.offertype_select.push({name: value.replace('_', ' ').replace('_', ' '), checked:false, multi: true});
+              this.offertype_select.push({name: value.replace('_', ' ').replace('_', ' '), checked:true, multi: true});
+              this.offer_type?.push(value);
           });
         }
       });
