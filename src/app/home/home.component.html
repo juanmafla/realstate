@@ -72,10 +72,10 @@
                             <h4>{{ 'Price' | translate }}</h4>
                             <div class="row half_gutters">
                                 <div class="col-6">
-                                    <input type="text" placeholder="From" [(ngModel)]="price_from" [ngModelOptions]="{standalone: true}">
+                                    <input type="number" placeholder="From" [(ngModel)]="price_from" [ngModelOptions]="{standalone: true}" step=".01" min="0" onkeydown="return false">
                                 </div>
                                 <div class="col-6">
-                                    <input type="text" placeholder="To" [(ngModel)]="price_to" [ngModelOptions]="{standalone: true}">
+                                    <input type="number" placeholder="To" [(ngModel)]="price_to" [ngModelOptions]="{standalone: true}" step=".01" min="0" onkeydown="return false">
                                 </div>
                             </div>
                           </ng-container>
@@ -87,10 +87,10 @@
                             <h4>{{ 'Area' | translate }}</h4>
                             <div class="row half_gutters">
                                 <div class="col-6">
-                                    <input type="text" placeholder="From" [(ngModel)]="area_from" [ngModelOptions]="{standalone: true}">
+                                    <input type="number" placeholder="From" [(ngModel)]="area_from" [ngModelOptions]="{standalone: true}" step=".01" min="0" onkeydown="return false">
                                 </div>
                                 <div class="col-6">
-                                    <input type="text" placeholder="To" [(ngModel)]="area_to" [ngModelOptions]="{standalone: true}">
+                                    <input type="number" placeholder="To" [(ngModel)]="area_to" [ngModelOptions]="{standalone: true}" step=".01" min="0" onkeydown="return false">
                                 </div>
                             </div>
                           </ng-container>
@@ -194,6 +194,11 @@
             </div>
         </div>
       </ng-container>
+
+      <div class="pagination" *ngIf="this.offers?.length>0">
+        <a href="#" (click)="Pagprev()">prev</a>
+        <a href="#" (click)="Pagnext()">next</a>
+      </div>
 
   </div>
 </main>

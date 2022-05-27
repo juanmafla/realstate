@@ -14,14 +14,12 @@ var HomeComponent = /** @class */ (function () {
         this.property = [];
         this.location = '';
         this.market = [];
-        this.price_from = 'From';
-        this.price_to = 'To';
-        this.area_from = 'From';
-        this.area_to = 'To';
         this.offer_type = [];
         this.number_offers = 0;
         this.loaded = false;
         this.sortby = 'Sort by';
+        this.currentpage = 1;
+        this.currentsort = 'price';
         this.property_type =
             [
                 { name: 'Select All', checked: true, multi: false }
@@ -37,22 +35,41 @@ var HomeComponent = /** @class */ (function () {
             "query": [
                 {
                     "name": "sorting",
-                    "value": "pricing",
+                    "value": 'time',
                     "type": "descending"
                 },
                 {
                     "name": "page",
-                    "value": 1
+                    "value": this.currentpage
                 },
                 {
                     "name": "price",
-                    "value": 300000,
+                    "value": this.price_to,
                     "type": "lower"
                 },
                 {
                     "name": "price",
-                    "value": 50000,
+                    "value": this.price_from,
                     "type": "greater"
+                },
+                {
+                    "name": "property",
+                    "value": this.property
+                },
+                {
+                    "name": "market",
+                    "value": this.market
+                },
+                {
+                    "name": "area",
+                    "allowed_types": {
+                        "lower": this.area_to,
+                        "greater": this.area_from
+                    }
+                },
+                {
+                    "name": "status",
+                    "values": this.offer_type
                 },
             ]
         };
@@ -94,21 +111,21 @@ var HomeComponent = /** @class */ (function () {
             "query": [
                 {
                     "name": "sorting",
-                    "value": "pricing",
+                    "value": this.currentsort,
                     "type": "ascending"
                 },
                 {
                     "name": "page",
-                    "value": 1
-                },
-                {
-                    "name": "price",
-                    "value": this.price_from,
-                    "type": "lower"
+                    "value": this.currentpage
                 },
                 {
                     "name": "price",
                     "value": this.price_to,
+                    "type": "lower"
+                },
+                {
+                    "name": "price",
+                    "value": this.price_from,
                     "type": "greater"
                 },
                 {
@@ -116,29 +133,44 @@ var HomeComponent = /** @class */ (function () {
                     "value": this.property
                 },
                 {
-                    "name": "location",
-                    "value": this.location
-                },
-                {
                     "name": "market",
                     "value": this.market
                 },
                 {
-                    "name": "area_from",
-                    "value": this.area_from,
-                    "type": "lower"
+                    "name": "area",
+                    "allowed_types": {
+                        "lower": this.area_to,
+                        "greater": this.area_from
+                    }
                 },
                 {
-                    "name": "area_to",
-                    "value": this.area_to,
-                    "type": "greater"
+                    "name": "status",
+                    "values": this.offer_type
                 },
-                {
-                    "name": "offer_type",
-                    "value": this.offer_type
-                }
             ]
         };
+        if (this.location) {
+            Search_offers.query.push({
+                "name": "location",
+                "value": this.location,
+                "type": ''
+            });
+        }
+        /*if(this.price_from) {
+          Search_offers.query.push({
+            "name": "price",
+            "value": this.price_from,
+            "type": "lower"
+          });
+        }
+    
+        if(this.price_to) {
+          Search_offers.query.push({
+            "name": "price",
+            "value": this.price_to,
+            "type": "greater"
+          });
+        }*/
         this.offerservice.getOffers(Search_offers).subscribe(function (data) {
             _this.offers = data['output'];
             console.log(Search_offers);
@@ -147,25 +179,26 @@ var HomeComponent = /** @class */ (function () {
     HomeComponent.prototype.Timeorder = function () {
         var _this = this;
         this.sortby = 'Time';
+        this.currentsort = 'time';
         var Search_offers = {
             "query": [
                 {
                     "name": "sorting",
-                    "value": "time",
+                    "value": this.currentsort,
                     "type": "ascending"
                 },
                 {
                     "name": "page",
-                    "value": 1
-                },
-                {
-                    "name": "price",
-                    "value": this.price_from,
-                    "type": "lower"
+                    "value": this.currentpage
                 },
                 {
                     "name": "price",
                     "value": this.price_to,
+                    "type": "lower"
+                },
+                {
+                    "name": "price",
+                    "value": this.price_from,
                     "type": "greater"
                 },
                 {
@@ -173,56 +206,58 @@ var HomeComponent = /** @class */ (function () {
                     "value": this.property
                 },
                 {
-                    "name": "location",
-                    "value": this.location
-                },
-                {
                     "name": "market",
                     "value": this.market
                 },
                 {
-                    "name": "area_from",
-                    "value": this.area_from,
-                    "type": "lower"
+                    "name": "area",
+                    "allowed_types": {
+                        "lower": this.area_to,
+                        "greater": this.area_from
+                    }
                 },
                 {
-                    "name": "area_to",
-                    "value": this.area_to,
-                    "type": "greater"
+                    "name": "status",
+                    "values": this.offer_type
                 },
-                {
-                    "name": "offer_type",
-                    "value": this.offer_type
-                }
             ]
         };
+        if (this.location) {
+            Search_offers.query.push({
+                "name": "location",
+                "value": this.location,
+                "type": ''
+            });
+        }
         this.offerservice.getOffers(Search_offers).subscribe(function (data) {
             _this.offers = data['output'];
             _this.number_offers = data['output'].length;
+            console.log(Search_offers);
         });
     };
     HomeComponent.prototype.Pricingorder = function () {
         var _this = this;
         this.sortby = 'Pricing';
+        this.currentsort = 'price';
         var Search_offers = {
             "query": [
                 {
                     "name": "sorting",
-                    "value": "price",
+                    "value": this.currentsort,
                     "type": "ascending"
                 },
                 {
                     "name": "page",
-                    "value": 1
-                },
-                {
-                    "name": "price",
-                    "value": this.price_from,
-                    "type": "lower"
+                    "value": this.currentpage
                 },
                 {
                     "name": "price",
                     "value": this.price_to,
+                    "type": "lower"
+                },
+                {
+                    "name": "price",
+                    "value": this.price_from,
                     "type": "greater"
                 },
                 {
@@ -230,32 +265,33 @@ var HomeComponent = /** @class */ (function () {
                     "value": this.property
                 },
                 {
-                    "name": "location",
-                    "value": this.location
-                },
-                {
                     "name": "market",
                     "value": this.market
                 },
                 {
-                    "name": "area_from",
-                    "value": this.area_from,
-                    "type": "lower"
+                    "name": "area",
+                    "allowed_types": {
+                        "lower": this.area_to,
+                        "greater": this.area_from
+                    }
                 },
                 {
-                    "name": "area_to",
-                    "value": this.area_to,
-                    "type": "greater"
+                    "name": "status",
+                    "values": this.offer_type
                 },
-                {
-                    "name": "offer_type",
-                    "value": this.offer_type
-                }
             ]
         };
+        if (this.location) {
+            Search_offers.query.push({
+                "name": "location",
+                "value": this.location,
+                "type": ''
+            });
+        }
         this.offerservice.getOffers(Search_offers).subscribe(function (data) {
             _this.offers = data['output'];
             _this.number_offers = data['output'].length;
+            console.log(Search_offers);
         });
     };
     HomeComponent.prototype.propertylist = function (item) {
@@ -272,6 +308,106 @@ var HomeComponent = /** @class */ (function () {
     };
     HomeComponent.prototype.shareIndividualCheckedList = function (item) {
         console.log(item);
+    };
+    HomeComponent.prototype.Pagprev = function () {
+        var _this = this;
+        if (this.currentpage > 0) {
+            var Search_offers_1 = {
+                "query": [
+                    {
+                        "name": "sorting",
+                        "value": this.currentsort,
+                        "type": "ascending"
+                    },
+                    {
+                        "name": "page",
+                        "value": this.currentpage - 1
+                    },
+                    {
+                        "name": "price",
+                        "value": this.price_to,
+                        "type": "lower"
+                    },
+                    {
+                        "name": "price",
+                        "value": this.price_from,
+                        "type": "greater"
+                    },
+                    {
+                        "name": "property",
+                        "value": this.property
+                    },
+                    {
+                        "name": "market",
+                        "value": this.market
+                    },
+                    {
+                        "name": "area",
+                        "allowed_types": {
+                            "lower": this.area_to,
+                            "greater": this.area_from
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "values": this.offer_type
+                    },
+                ]
+            };
+            this.offerservice.getOffers(Search_offers_1).subscribe(function (data) {
+                _this.offers = data['output'];
+                console.log(Search_offers_1);
+            });
+        }
+    };
+    HomeComponent.prototype.Pagnext = function () {
+        var _this = this;
+        var Search_offers = {
+            "query": [
+                {
+                    "name": "sorting",
+                    "value": this.currentsort,
+                    "type": "ascending"
+                },
+                {
+                    "name": "page",
+                    "value": this.currentpage + 1
+                },
+                {
+                    "name": "price",
+                    "value": this.price_to,
+                    "type": "lower"
+                },
+                {
+                    "name": "price",
+                    "value": this.price_from,
+                    "type": "greater"
+                },
+                {
+                    "name": "property",
+                    "value": this.property
+                },
+                {
+                    "name": "market",
+                    "value": this.market
+                },
+                {
+                    "name": "area",
+                    "allowed_types": {
+                        "lower": this.area_to,
+                        "greater": this.area_from
+                    }
+                },
+                {
+                    "name": "status",
+                    "values": this.offer_type
+                },
+            ]
+        };
+        this.offerservice.getOffers(Search_offers).subscribe(function (data) {
+            _this.offers = data['output'];
+            console.log(Search_offers);
+        });
     };
     HomeComponent = __decorate([
         core_1.Component({

@@ -16,14 +16,16 @@ export class HomeComponent implements OnInit {
   property:any[]=[];
   location: string = '';
   market: any[]=[];
-  price_from: any = 'From';
-  price_to: any = 'To';
-  area_from: any = 'From';
-  area_to: any = 'To';
+  price_from: any;
+  price_to: any;
+  area_from: any;
+  area_to: any;
   offer_type: any[]=[];
   number_offers: number = 0;
   loaded: boolean = false;
   sortby= 'Sort by';
+  currentpage: number=1;
+  currentsort: any='price';
 
   constructor(public offerservice: OffersService) {
     this.property_type =
@@ -42,49 +44,42 @@ export class HomeComponent implements OnInit {
         "query": [
           {
             "name": "sorting",
-            "value": "pricing",
+            "value": 'time',
             "type": "descending"
           },
           {
             "name": "page",
-            "value": 1
+            "value": this.currentpage
           },
           {
             "name": "price",
-            "value": 300000,
+            "value": this.price_to,
             "type": "lower"
           },
           {
             "name": "price",
-            "value": 50000,
+            "value": this.price_from,
             "type": "greater"
           },
-          /*{
+          {
             "name": "property",
             "value": this.property,
-          },
-          {
-            "name": "location",
-            "value": this.location,
           },
           {
             "name": "market",
             "value": this.market,
           },
           {
-            "name": "area_from",
-            "value": this.area_from,
-            "type": "lower"
+            "name": "area",
+            "allowed_types": {
+              "lower": this.area_to,
+              "greater": this.area_from
+            }
           },
           {
-            "name": "area_to",
-            "value": this.area_to,
-            "type": "greater"
+            "name": "status",
+            "values": this.offer_type
           },
-          {
-            "name": "offer_type",
-            "value": this.offer_type,
-          }*/
         ]
     };
 
@@ -124,21 +119,21 @@ export class HomeComponent implements OnInit {
       "query": [
         {
           "name": "sorting",
-          "value": "pricing",
+          "value": this.currentsort,
           "type": "ascending"
         },
         {
           "name": "page",
-          "value": 1
-        },
-        {
-          "name": "price",
-          "value": this.price_from,
-          "type": "lower"
+          "value": this.currentpage
         },
         {
           "name": "price",
           "value": this.price_to,
+          "type": "lower"
+        },
+        {
+          "name": "price",
+          "value": this.price_from,
           "type": "greater"
         },
         {
@@ -146,29 +141,47 @@ export class HomeComponent implements OnInit {
           "value": this.property,
         },
         {
-          "name": "location",
-          "value": this.location,
-        },
-        {
           "name": "market",
           "value": this.market,
         },
         {
-          "name": "area_from",
-          "value": this.area_from,
-          "type": "lower"
+          "name": "area",
+          "allowed_types": {
+            "lower": this.area_to,
+            "greater": this.area_from
+          }
         },
         {
-          "name": "area_to",
-          "value": this.area_to,
-          "type": "greater"
+          "name": "status",
+          "values": this.offer_type
         },
-        {
-          "name": "offer_type",
-          "value": this.offer_type,
-        }
       ]
     };
+
+    if(this.location) {
+      Search_offers.query.push({
+        "name": "location",
+        "value": this.location,
+        "type" : ''
+      });
+    }
+
+    /*if(this.price_from) {
+      Search_offers.query.push({
+        "name": "price",
+        "value": this.price_from,
+        "type": "lower"
+      });
+    }
+
+    if(this.price_to) {
+      Search_offers.query.push({
+        "name": "price",
+        "value": this.price_to,
+        "type": "greater"
+      });
+    }*/
+
 
     this.offerservice.getOffers(Search_offers).subscribe(data=> {
       this.offers=data['output'];
@@ -178,25 +191,26 @@ export class HomeComponent implements OnInit {
 
   Timeorder() {
     this.sortby='Time';
+    this.currentsort='time';
     const Search_offers = {
       "query": [
         {
           "name": "sorting",
-          "value": "time",
+          "value": this.currentsort,
           "type": "ascending"
         },
         {
           "name": "page",
-          "value": 1
-        },
-        {
-          "name": "price",
-          "value": this.price_from,
-          "type": "lower"
+          "value": this.currentpage
         },
         {
           "name": "price",
           "value": this.price_to,
+          "type": "lower"
+        },
+        {
+          "name": "price",
+          "value": this.price_from,
           "type": "greater"
         },
         {
@@ -204,57 +218,60 @@ export class HomeComponent implements OnInit {
           "value": this.property,
         },
         {
-          "name": "location",
-          "value": this.location,
-        },
-        {
           "name": "market",
           "value": this.market,
         },
         {
-          "name": "area_from",
-          "value": this.area_from,
-          "type": "lower"
+          "name": "area",
+          "allowed_types": {
+            "lower": this.area_to,
+            "greater": this.area_from
+          }
         },
         {
-          "name": "area_to",
-          "value": this.area_to,
-          "type": "greater"
+          "name": "status",
+          "values": this.offer_type
         },
-        {
-          "name": "offer_type",
-          "value": this.offer_type,
-        }
       ]
     };
+
+    if(this.location) {
+      Search_offers.query.push({
+        "name": "location",
+        "value": this.location,
+        "type" : ''
+      });
+    }
 
     this.offerservice.getOffers(Search_offers).subscribe(data=> {
       this.offers=data['output'];
       this.number_offers=data['output'].length;
+      console.log(Search_offers);
     });
   }
 
   Pricingorder() {
     this.sortby='Pricing';
+    this.currentsort='price';
     const Search_offers = {
       "query": [
         {
           "name": "sorting",
-          "value": "price",
+          "value": this.currentsort,
           "type": "ascending"
         },
         {
           "name": "page",
-          "value": 1
-        },
-        {
-          "name": "price",
-          "value": this.price_from,
-          "type": "lower"
+          "value": this.currentpage
         },
         {
           "name": "price",
           "value": this.price_to,
+          "type": "lower"
+        },
+        {
+          "name": "price",
+          "value": this.price_from,
           "type": "greater"
         },
         {
@@ -262,33 +279,35 @@ export class HomeComponent implements OnInit {
           "value": this.property,
         },
         {
-          "name": "location",
-          "value": this.location,
-        },
-        {
           "name": "market",
           "value": this.market,
         },
         {
-          "name": "area_from",
-          "value": this.area_from,
-          "type": "lower"
+          "name": "area",
+          "allowed_types": {
+            "lower": this.area_to,
+            "greater": this.area_from
+          }
         },
         {
-          "name": "area_to",
-          "value": this.area_to,
-          "type": "greater"
+          "name": "status",
+          "values": this.offer_type
         },
-        {
-          "name": "offer_type",
-          "value": this.offer_type,
-        }
       ]
     };
+
+    if(this.location) {
+      Search_offers.query.push({
+        "name": "location",
+        "value": this.location,
+        "type" : ''
+      });
+    }
 
     this.offerservice.getOffers(Search_offers).subscribe(data=> {
       this.offers=data['output'];
       this.number_offers=data['output'].length;
+      console.log(Search_offers);
     });
   }
 
@@ -309,6 +328,110 @@ export class HomeComponent implements OnInit {
   }
   shareIndividualCheckedList(item:{}){
     console.log(item);
+  }
+  Pagprev(){
+    if(this.currentpage >0){
+      const Search_offers = {
+        "query": [
+          {
+            "name": "sorting",
+            "value": this.currentsort,
+            "type": "ascending"
+          },
+          {
+            "name": "page",
+            "value": this.currentpage-1
+          },
+          {
+            "name": "price",
+            "value": this.price_to,
+            "type": "lower"
+          },
+          {
+            "name": "price",
+            "value": this.price_from,
+            "type": "greater"
+          },
+          {
+            "name": "property",
+            "value": this.property,
+          },
+          {
+            "name": "market",
+            "value": this.market,
+          },
+          {
+            "name": "area",
+            "allowed_types": {
+              "lower": this.area_to,
+              "greater": this.area_from
+            }
+          },
+          {
+            "name": "status",
+            "values": this.offer_type
+          },
+        ]
+      };
+
+      this.offerservice.getOffers(Search_offers).subscribe(data=> {
+        this.offers=data['output'];
+        console.log(Search_offers);
+      });
+    }
+  }
+
+
+  Pagnext(){
+
+      const Search_offers = {
+        "query": [
+          {
+            "name": "sorting",
+            "value": this.currentsort,
+            "type": "ascending"
+          },
+          {
+            "name": "page",
+            "value": this.currentpage+1
+          },
+          {
+            "name": "price",
+            "value": this.price_to,
+            "type": "lower"
+          },
+          {
+            "name": "price",
+            "value": this.price_from,
+            "type": "greater"
+          },
+          {
+            "name": "property",
+            "value": this.property,
+          },
+          {
+            "name": "market",
+            "value": this.market,
+          },
+          {
+            "name": "area",
+            "allowed_types": {
+              "lower": this.area_to,
+              "greater": this.area_from
+            }
+          },
+          {
+            "name": "status",
+            "values": this.offer_type
+          },
+        ]
+      };
+
+      this.offerservice.getOffers(Search_offers).subscribe(data=> {
+        this.offers=data['output'];
+        console.log(Search_offers);
+      });
+
   }
 
 }
