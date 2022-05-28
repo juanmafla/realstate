@@ -65,8 +65,8 @@ background-color: #EEEEEE;
   background-color: #F5F5F5;
   padding-left: 16px;
   padding-right: 16px;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   align-items: center;
   box-sizing: border-box;
 }
@@ -86,6 +86,11 @@ background-color: #EEEEEE;
 .drop-show-row.cactive.isall {
   background-color: #F5F5F5;
   color: #9E9E9E;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 .drop-show-row.cactive.isall .drop-show-row-icon {
@@ -105,7 +110,7 @@ background-color: #EEEEEE;
 }
 
 .drop-show-row-icon svg {
-  margin-top: -5px;
+  margin-top: -9px;
   opacity: 0;
 }
 

@@ -91,7 +91,7 @@ var HomeComponent = /** @class */ (function () {
                         (_a = _this.market) === null || _a === void 0 ? void 0 : _a.push(value);
                     });
                 }
-                if ((field === null || field === void 0 ? void 0 : field.name) == 'offertype_select') {
+                if ((field === null || field === void 0 ? void 0 : field.name) == 'status') {
                     field === null || field === void 0 ? void 0 : field.allowed_values.forEach(function (value) {
                         var _a;
                         _this.offertype_select.push({ name: value.replace('_', ' ').replace('_', ' '), checked: true, multi: true });

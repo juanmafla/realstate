@@ -41,9 +41,9 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
                     this.list[i].checked = true;
                 }
                 else {
-                    var valin = this.checkedList.indexOf(value);
-                    this.checkedList.splice(valin, 1);
-                    this.list[i].checked = false;
+                    //let valin=this.checkedList.indexOf(value);
+                    //this.checkedList.splice(valin,1);
+                    //this.list[i].checked= false;
                 }
             }
             if (value == 'Select All') {
@@ -68,9 +68,9 @@ var MultiSelectDropdownComponent = /** @class */ (function () {
                 this.list[i].checked = true;
             }
             else {
-                var valin = this.checkedList.indexOf(value);
-                this.checkedList.splice(valin, 1);
-                this.list[i].checked = false;
+                //let valin=this.checkedList.indexOf(value);
+                //this.checkedList.splice(valin,1);
+                //this.list[i].checked= false;
             }
             if (value == 'Select All') {
                 this.isall = false;

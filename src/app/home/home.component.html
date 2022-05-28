@@ -160,30 +160,39 @@
             </a>
             <div class="room_content position-relative">
                 <a *ngIf="offer?.title" routerLink="/single/{{offer?.link_id}}">
-                    <h2 class="pr_30">{{offer?.title}}</h2>
+                    <h2 class="pr_30">
+                      <ng-container *ngIf="offer?.title.length>80">
+                        {{offer?.title | slice:0:6}}..
+                      </ng-container>
+                      <ng-container *ngIf="offer?.title.length<80">
+                        {{offer?.title}}
+                      </ng-container>
+
+                    </h2>
                 </a>
-                <p class="mt_5" *ngIf="offer?.subtitle">...</p>
+                <p class="mt_5" ><ng-container *ngIf="!offer?.subtitle">No information</ng-container>
+                </p>
                 <div class="row pt_10">
                     <div class="col-6">
                         <ul>
-                            <li *ngIf="offer?.area" ><img src="./assets/img/icon1.svg" alt=""> {{offer?.area}} {{ 'm²' | translate }}</li>
-                            <li *ngIf="offer?.type"><img src="./assets/img/icon2.svg" alt=""> ...</li>
+                            <li><img src="./assets/img/icon1.svg" alt=""><ng-container *ngIf="!offer?.area">No information</ng-container> {{offer?.area}} {{ 'm²' | translate }}</li>
+                            <li><img src="./assets/img/icon2.svg" alt=""><ng-container *ngIf="!offer?.type">No information</ng-container></li>
                         </ul>
                     </div>
                     <div class="col-6">
                         <ul>
-                            <li *ngIf="offer?.rooms"><img src="./assets/img/icon3.svg" alt=""> .. {{ 'rooms' | translate }}</li>
-                            <li *ngIf="offer?.rooms"><img src="./assets/img/icon4.svg" alt=""> ...</li>
+                            <li><img src="./assets/img/icon3.svg" alt=""> <ng-container *ngIf="!offer?.rooms">No information</ng-container>{{ 'rooms' | translate }}</li>
+                            <li><img src="./assets/img/icon4.svg" alt=""> <ng-container *ngIf="!offer?.rooms">No information</ng-container></li>
                         </ul>
                     </div>
                 </div>
                 <div class="row align-items-end">
                     <div class="col-6 mt_10">
-                        <p *ngIf="offer?.pseller"><strong>{{ 'Private seller' | translate }}</strong></p>
+                        <p><strong><ng-container *ngIf="!offer?.pseller">No information</ng-container> {{ 'Private seller' | translate }}</strong></p>
                     </div>
                     <div class="col-6 text-right mt_10">
-                        <p *ngIf="offer?.price">12 500{{ 'PLN/m²' | translate }}</p>
-                        <h2>{{offer?.price}} {{ 'PLN' | translate }}</h2>
+                        <p><ng-container *ngIf="!offer?.price">No information</ng-container>{{ 'PLN/m²' | translate }}</p>
+                        <h2><ng-container *ngIf="!offer?.price">No information</ng-container>{{offer?.price}} {{ 'PLN' | translate }}</h2>
                     </div>
                 </div>
                 <div class="heart">

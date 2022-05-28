@@ -45,9 +45,9 @@ export class MultiSelectDropdownComponent {
               this.checkedList.push(value);
               this.list[i].checked= true;
             } else {
-              let valin=this.checkedList.indexOf(value);
-              this.checkedList.splice(valin,1);
-              this.list[i].checked= false;
+              //let valin=this.checkedList.indexOf(value);
+              //this.checkedList.splice(valin,1);
+              //this.list[i].checked= false;
             }
           }
 
@@ -74,9 +74,9 @@ export class MultiSelectDropdownComponent {
               this.list[i].checked= true;
 
             } else {
-              let valin=this.checkedList.indexOf(value);
-              this.checkedList.splice(valin,1);
-              this.list[i].checked= false;
+              //let valin=this.checkedList.indexOf(value);
+              //this.checkedList.splice(valin,1);
+              //this.list[i].checked= false;
 
             }
 
@@ -111,7 +111,7 @@ export class MultiSelectDropdownComponent {
         this.shareIndividualStatus();
     }
     shareCheckedlist(){
-         this.shareCheckedList.emit(this.checkedList);
+        this.shareCheckedList.emit(this.checkedList);
     }
     shareIndividualStatus(){
         this.shareIndividualCheckedList.emit(this.currentSelected);

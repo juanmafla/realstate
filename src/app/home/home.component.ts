@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
               this.market?.push(value);
           });
         }
-        if(field?.name == 'offertype_select'){
+        if(field?.name == 'status'){
           field?.allowed_values.forEach(value => {
               this.offertype_select.push({name: value.replace('_', ' ').replace('_', ' '), checked:true, multi: true});
               this.offer_type?.push(value);
