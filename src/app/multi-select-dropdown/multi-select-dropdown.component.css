@@ -30,9 +30,18 @@ background-color: #EEEEEE;
   background-color: #F5F5F5;
   color: #9E9E9E;
 }
-.drop-toggle i{
+.drop-toggle i {
   float:right;
   margin-top: 15px;
+}
+.drop-toggle i.fa-angle-up {
+  display: none;
+}
+.drop-toggle.inpact i.fa-angle-up{
+  display: block;
+}
+.drop-toggle.inpact i.fa-angle-down{
+  display: none;
 }
 .drop-show {
   background-color: #F5F5F5;
@@ -70,19 +79,15 @@ background-color: #EEEEEE;
   align-items: center;
   box-sizing: border-box;
 }
-
 .drop-show-row.cactive {
   background-color: #E0E0E0;
 }
-
 .drop-show-row:hover {
   background-color: #EEEEEE;
 }
-
 .drop-show-row.active {
   background-color: #E0E0E0;
 }
-
 .drop-show-row.cactive.isall {
   background-color: #F5F5F5;
   color: #9E9E9E;
@@ -92,15 +97,12 @@ background-color: #EEEEEE;
   -webkit-user-select: none;
   -o-user-select: none;
 }
-
 .drop-show-row.cactive.isall .drop-show-row-icon {
   width: 0;
 }
-
 .drop-show-row .drop-show-row-text {
   font-size: 14px;
 }
-
 .drop-show-row-icon {
   width: 0;
   max-width: 16px;
@@ -108,17 +110,14 @@ background-color: #EEEEEE;
   transition: 0.1s;
   margin-right: 11px;
 }
-
 .drop-show-row-icon svg {
   margin-top: -9px;
   opacity: 0;
 }
-
 .drop-show-row.cactive .drop-show-row-icon {
   width: 16px;
   transition: 0.1s;
 }
-
 .drop-show-row.cactive .drop-show-row-icon svg {
   opacity: 1;
 }

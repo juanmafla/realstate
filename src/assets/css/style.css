@@ -493,7 +493,8 @@ header.sticky {
 	cursor: pointer;
 }
 .heart svg{
-	width: 25px;
+	width: 32px;
+  height: 32px;
 }
 .heart svg:hover path{
 	fill:#424242;
@@ -766,6 +767,14 @@ footer li a:disabled{
 }
 .details_list{
 	padding-top: 8px;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 85px;
+}
+@media (max-width: 992px) {
+  .details_list{
+    grid-template-columns: auto;
+  }
 }
 .details_list li{
 	display: flex;

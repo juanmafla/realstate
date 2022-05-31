@@ -1,11 +1,3 @@
-<!-- Preloader Start -->
-<div id="preloader" *ngIf="!loaded">
-  <div class="loader3">
-    <span></span>
-    <span></span>
-  </div>
-</div>
-<!-- Preloader End -->
 <main>
   <div class="container">
       <div class="row btn_wrap">
@@ -47,7 +39,7 @@
       <div class="row">
           <div class="col-lg-7 mt_10">
               <h2 class="title" *ngIf="this.offer?.ad.title">{{this.offer?.ad.title}}</h2>
-              <p class="sub_title mt_10" *ngIf="this.offer?.ad.site">{{this.offer?.ad.site}}</p>
+              <p class="sub_title mt_10">{{this.offer?.location.community}}, {{this.offer?.location.country}}</p>
           </div>
           <div class="col-lg-5 text-sm-right mt_10">
               <h2 class="title" *ngIf="this.offer?.ad.price.price">{{this.offer?.ad.price.price}} {{this.offer?.ad.price.currency |uppercase}}</h2>
@@ -56,7 +48,7 @@
       </div>
       <h4 class="md_title">{{ 'Offer details' | translate }}</h4>
       <div class="row">
-          <div class="col-md-6 pr-lg-5">
+          <div class="col-md-12">
               <ul class="details_list">
                   <li *ngIf="this.offer?.building.properties.area">
                       <span>
@@ -121,10 +113,7 @@
                       </span>
                       <strong>..</strong>
                   </li>
-              </ul>
-          </div>
-          <div class="col-md-6 pl-lg-5">
-              <ul class="details_list">
+
                   <li *ngIf="this.offer?.seller">
                       <span>
                           <span class="icon">

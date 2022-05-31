@@ -12,6 +12,7 @@ var SingleComponent = /** @class */ (function () {
     function SingleComponent(route, offerservice) {
         this.route = route;
         this.offerservice = offerservice;
+        this.id = 0;
         this.sync1 = {
             items: 1,
             nav: true,
@@ -48,18 +49,15 @@ var SingleComponent = /** @class */ (function () {
         var _this = this;
         this.route.params.subscribe(function (params) {
             _this.id = params['id'];
-            //console.log(this.id);
             var link_id = { "id": _this.id };
             _this.offerservice.getOffer(link_id).subscribe(function (data) {
                 _this.offer = data.output;
                 _this.loaded = true;
-                //console.log(data.output);
             });
         });
     };
     SingleComponent.prototype.getData = function (data, sl) {
         this.activeSlides = data;
-        //console.log(this.activeSlides.slides![0].id);
         if (this.activeSlides.slides[0].id) {
             sl.to(this.activeSlides.slides[0].id);
         }

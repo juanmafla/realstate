@@ -22,20 +22,6 @@
                         [listname]="'properties'"
                         (shareCheckedList)="propertylist($event)">
                       </app-multi-select-dropdown>
-                      <!--<ng-container *ngIf="field?.input_type=='checkbox'" >
-                        <select nice-select multiple [(ngModel)]="property" [ngModelOptions]="{standalone: true}">
-                          <ng-container *ngFor="let values of this.field?.allowed_values;">
-                            <option value="{{values}}">{{ values.replace('_', ' ').replace('_', ' ') }}</option>
-                          </ng-container>
-                        </select>
-                      </ng-container>
-                      <ng-container *ngIf="field?.input_type!='checkbox'">
-                        <select nice-select [(ngModel)]="property" [ngModelOptions]="{standalone: true}">
-                          <ng-container *ngFor="let values of this.field?.allowed_values;">
-                            <option value="{{values}}">{{ values.replace('_', ' ').replace('_', ' ') }}</option>
-                          </ng-container>
-                        </select>
-                      </ng-container>-->
                     </ng-container>
                   </ng-container>
               </div>
@@ -51,11 +37,6 @@
                   <ng-container *ngFor="let field of this.fields;">
                     <ng-container *ngIf="field?.name=='market'">
                       <h4>{{ 'Market type' | translate }}</h4>
-                      <!--<select nice-select [(ngModel)]="market" [ngModelOptions]="{standalone: true}">
-                        <ng-container *ngFor="let values of this.field?.allowed_values;">
-                          <option value="{{values}}">{{ values.replace('_', ' ') }}</option>
-                        </ng-container>
-                      </select>-->
                       <app-multi-select-dropdown
                         [list]="market_select"
                         [listname]="'markets'"
@@ -102,26 +83,11 @@
                 <ng-container *ngFor="let field of this.fields;">
                   <ng-container *ngIf="field?.name=='status'">
                     <h4>{{ 'Offer type' | translate }}</h4>
-
                     <app-multi-select-dropdown
                         [list]="offertype_select"
                         [listname]="'offers'"
                         (shareCheckedList)="offer_typelist($event)" >
                       </app-multi-select-dropdown>
-                    <!--<ng-container *ngIf="field?.input_type=='checkbox'">
-                      <select nice-select [(ngModel)]="offer_type" [ngModelOptions]="{standalone: true}">
-                        <ng-container *ngFor="let values of this.field?.allowed_values;">
-                          <option value="{{values}}">{{ values.replace('_', ' ') }}</option>
-                        </ng-container>
-                      </select>
-                    </ng-container>
-                    <ng-container *ngIf="field?.input_type!='checkbox'">
-                      <select nice-select [(ngModel)]="offer_type" [ngModelOptions]="{standalone: true}">
-                        <ng-container *ngFor="let values of this.field?.allowed_values;">
-                          <option value="{{values}}">{{ values.replace('_', ' ') }}</option>
-                        </ng-container>
-                      </select>
-                    </ng-container>-->
                   </ng-container>
                 </ng-container>
               </div>
@@ -129,7 +95,7 @@
                   <button type="button" class="save_search button"><img src="./assets/img/bell.svg" alt="">{{ 'Save searching' | translate }}</button>
               </div>
               <div class="col-md-5 col-sm-7 d-flex align-items-center justify-content-end mt_32">
-                  <button class="reset" type="reset">{{ 'Clear filters' | translate }}</button>
+                  <button class="reset" type="reset" (click)="ClearFilters()">{{ 'Clear filters' | translate }}</button>
                   <select nice-select class="mt-0 more_filter" disabled>
                       <option>More filters</option>
                   </select>
@@ -156,18 +122,17 @@
       <ng-container *ngFor="let offer of this.offers;">
         <div class="room_box">
             <a routerLink="/single/{{offer?.link_id}}" class="room_img">
-                <img *ngIf="offer?.photos[0]" src="{{offer?.photos[0]}}" alt="">
+                <img *ngIf="offer?.photos" src="{{offer?.photos[0]}}" alt="">
             </a>
             <div class="room_content position-relative">
                 <a *ngIf="offer?.title" routerLink="/single/{{offer?.link_id}}">
                     <h2 class="pr_30">
-                      <ng-container *ngIf="offer?.title.length>80">
-                        {{offer?.title | slice:0:6}}..
+                      <ng-container *ngIf="offer?.title.length>30">
+                        {{offer?.title | slice:0:30}}..
                       </ng-container>
-                      <ng-container *ngIf="offer?.title.length<80">
+                      <ng-container *ngIf="offer?.title.length<30">
                         {{offer?.title}}
                       </ng-container>
-
                     </h2>
                 </a>
                 <p class="mt_5" ><ng-container *ngIf="!offer?.subtitle">No information</ng-container>
@@ -188,11 +153,11 @@
                 </div>
                 <div class="row align-items-end">
                     <div class="col-6 mt_10">
-                        <p><strong><ng-container *ngIf="!offer?.pseller">No information</ng-container> {{ 'Private seller' | translate }}</strong></p>
+                        <p><strong><ng-container *ngIf="!offer?.pseller">No information</ng-container> <ng-container *ngIf="offer?.pseller">{{ 'Private seller' | translate }}</ng-container></strong></p>
                     </div>
                     <div class="col-6 text-right mt_10">
-                        <p><ng-container *ngIf="!offer?.price">No information</ng-container>{{ 'PLN/m²' | translate }}</p>
-                        <h2><ng-container *ngIf="!offer?.price">No information</ng-container>{{offer?.price}} {{ 'PLN' | translate }}</h2>
+                        <p><ng-container *ngIf="!offer?.price">No information</ng-container> {{ 'PLN/m²' | translate }}</p>
+                        <h2><ng-container *ngIf="!offer?.price">No info</ng-container>{{offer?.price}} {{ 'PLN' | translate }}</h2>
                     </div>
                 </div>
                 <div class="heart">
@@ -204,7 +169,7 @@
         </div>
       </ng-container>
 
-      <div class="pagination" *ngIf="this.offers?.length>0">
+      <div class="pagination" *ngIf="this.offers">
         <a href="#" (click)="Pagprev()">prev</a>
         <a href="#" (click)="Pagnext()">next</a>
       </div>

@@ -11,7 +11,7 @@ import { SlidesOutputData, OwlOptions } from 'ngx-owl-carousel-o';
 
 export class SingleComponent implements OnInit {
 
-  id: any;
+  id:number= 0;
   offer: any;
   sync1: OwlOptions = {
     items: 1,
@@ -54,29 +54,23 @@ export class SingleComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.id = params['id'];
-      //console.log(this.id);
       const link_id= {"id": this.id};
       this.offerservice.getOffer(link_id).subscribe(data=> {
         this.offer=data.output;
         this.loaded=true;
-        //console.log(data.output);
       });
     });
   }
-
   getData(data: SlidesOutputData, sl:any) {
     this.activeSlides = data;
-    //console.log(this.activeSlides.slides![0].id);
     if(this.activeSlides.slides![0].id) {
       sl.to(this.activeSlides.slides![0].id);
     }
   }
-
-  getThumbsdata(sl:any, index:any, photo:any) {
+  getThumbsdata(sl:any, index:number, photo:any) {
     sl.to('sl_'+index);
     this.currentitem = photo;
   }
-
   showmoredes() {
     if(!this.ariaex) {
       this.ariaex = true;
@@ -84,7 +78,4 @@ export class SingleComponent implements OnInit {
       this.ariaex = false;
     }
   }
-
-
-
 }

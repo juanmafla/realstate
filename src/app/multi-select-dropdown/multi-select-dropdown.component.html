@@ -3,7 +3,8 @@
       <button class="drop-toggle btn flat" (click)="showDropDown=!showDropDown" [class.inpact]="showDropDown">
           <span *ngIf="checkedList.length<=0">{{showonselect}} <ng-container *ngIf="showonselect=='All'">{{listname}}</ng-container></span>
           <span *ngIf="checkedList.length>0">{{showonselect}} <ng-container *ngIf="showonselect=='All'">{{listname}}</ng-container></span>
-          <i class="fa fa-angle-down"></i><!--*ngIf="showDropDown"-->
+          <i class="fa fa-angle-down"></i>
+          <i class="fa fa-angle-up"></i>
       </button>
       <div class="drop-show" *ngIf="showDropDown" (mouseleave)="showDropDown = false">
           <div *ngFor="let a of list; let i= index;">
