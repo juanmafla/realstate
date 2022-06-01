@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit {
           "type": "greater"
         },
         {
-          "name": "property",
+          "name": "property_type",
           "value": this.property,
         },
         {
@@ -97,10 +97,13 @@ export class HomeComponent implements OnInit {
         },
         {
           "name": "area",
-          "allowed_types": {
-            "lower": this.area_to,
-            "greater": this.area_from
-          }
+          "value": this.area_to,
+          "type": "lower"
+        },
+        {
+          "name": "area",
+          "value": this.area_from,
+          "type": "greater"
         },
         {
           "name": "status",
