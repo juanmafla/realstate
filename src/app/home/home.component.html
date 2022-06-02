@@ -146,7 +146,7 @@
                     </div>
                     <div class="col-6">
                         <ul>
-                            <li><img src="./assets/img/icon3.svg" alt=""> <ng-container *ngIf="!offer?.rooms">No information</ng-container>{{ 'rooms' | translate }}</li>
+                            <li><img src="./assets/img/icon3.svg" alt=""> <ng-container *ngIf="!offer?.rooms">No information</ng-container> <ng-container *ngIf="offer?.rooms">{{ 'rooms' | translate }}</ng-container></li>
                             <li><img src="./assets/img/icon4.svg" alt=""> <ng-container *ngIf="!offer?.rooms">No information</ng-container></li>
                         </ul>
                     </div>

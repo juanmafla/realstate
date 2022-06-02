@@ -17,7 +17,7 @@ export class OffersService {
     return this.http.post('/offers', search);
   }
 
-  getSettings():Observable<any> {
-    return this.http.post('/settings','');
+  getSettings(query: any):Observable<any> {
+    return this.http.post('/settings',query);
   }
 }

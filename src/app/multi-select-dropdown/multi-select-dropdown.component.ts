@@ -57,7 +57,7 @@ export class MultiSelectDropdownComponent {
         });
       }
     } else {
-      if(this.list[0].name=='Select All' && this.list[0].checked) {
+      if(this.list[0].name=='Select All' && this.list[0].checked && value != 'Select All') {
         this.isall= false;
         this.list.forEach(element => {
           this.checkedList = [];
@@ -65,15 +65,17 @@ export class MultiSelectDropdownComponent {
         });
         this.checkedList.push(value);
         this.list[i].checked= true;
+      } else if(this.list[0].name=='Select All' && this.list[0].checked && value == 'Select All') {
+        return;
       }
 
-      if(value == 'Select All'){
+      /*if(value == 'Select All'){
         this.isall= false;
         this.list.forEach(element => {
               element.checked = false;
               this.checkedList = [];
         });
-      }
+      }*/
     }
 
     this.currentSelected = {checked : status,name:value};

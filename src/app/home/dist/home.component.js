@@ -22,6 +22,114 @@ var HomeComponent = /** @class */ (function () {
         this.sortby = 'Sort by';
         this.currentpage = 1;
         this.currentsort = 'time';
+        this.query_settings = {
+            "output": [
+                {
+                    "name": "property_type",
+                    "allowed_types": [
+                        "equal"
+                    ],
+                    "allowed_values": [
+                        "flat",
+                        "commercial_premises",
+                        "house",
+                        "plot",
+                        "halls_and_warehouses"
+                    ],
+                    "input_type": "radio"
+                },
+                {
+                    "name": "status",
+                    "allowed_types": [
+                        "equal"
+                    ],
+                    "allowed_values": [
+                        "sell",
+                        "rent"
+                    ],
+                    "input_type": "radio"
+                },
+                {
+                    "name": "market",
+                    "allowed_types": [
+                        "equal"
+                    ]
+                },
+                {
+                    "name": "area",
+                    "allowed_types": [
+                        "lower",
+                        "greater"
+                    ]
+                },
+                {
+                    "name": "price",
+                    "allowed_types": [
+                        "lower",
+                        "greater"
+                    ]
+                },
+                {
+                    "name": "price_per_m2",
+                    "allowed_types": [
+                        "lower",
+                        "greater"
+                    ]
+                },
+                {
+                    "name": "floor",
+                    "allowed_types": [
+                        "equal"
+                    ]
+                },
+                {
+                    "name": "floor_number",
+                    "allowed_types": [
+                        "lower",
+                        "greater"
+                    ]
+                },
+                {
+                    "name": "room_number",
+                    "allowed_types": [
+                        "lower",
+                        "greater"
+                    ]
+                },
+                {
+                    "name": "tags",
+                    "allowed_types": [
+                        "equal"
+                    ],
+                    "allowed_values": [
+                        "parking",
+                        "garden",
+                        "heating",
+                        "furnishings",
+                        "site",
+                        "remote_service",
+                        "non_smoking_only",
+                        "separate_kitchen",
+                        "lift",
+                        "air_conditioning",
+                        "fence",
+                        "balcony",
+                        "swimming_pool",
+                        "basement",
+                        "attic",
+                        "terrace"
+                    ],
+                    "input_type": "checkbox"
+                },
+                {
+                    "name": "build_year",
+                    "allowed_types": [
+                        "lower",
+                        "greater"
+                    ]
+                }
+            ]
+        };
         this.property_type = [{ name: 'Select All', checked: true, multi: false }];
         this.market_select = [{ name: 'Select All', checked: true, multi: false }];
         this.offertype_select = [{ name: 'Select All', checked: true, multi: false }];
@@ -32,7 +140,7 @@ var HomeComponent = /** @class */ (function () {
     };
     HomeComponent.prototype.GetSettings = function () {
         var _this = this;
-        this.offerservice.getSettings().subscribe(function (data) {
+        this.offerservice.getSettings(this.query_settings).subscribe(function (data) {
             var _a;
             _this.fields = data['output'];
             (_a = _this.fields) === null || _a === void 0 ? void 0 : _a.forEach(function (field) {
@@ -62,6 +170,7 @@ var HomeComponent = /** @class */ (function () {
         });
         this.offerservice.getOffers(this.search).subscribe(function (data) {
             _this.offers = data['output'];
+            console.log(_this.search);
         });
     };
     HomeComponent.prototype.UpdateQuery = function () {

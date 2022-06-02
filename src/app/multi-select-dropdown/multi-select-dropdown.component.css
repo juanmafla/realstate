@@ -78,6 +78,10 @@ background-color: #EEEEEE;
   padding-bottom: 16px;
   align-items: center;
   box-sizing: border-box;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 .drop-show-row.cactive {
   background-color: #E0E0E0;

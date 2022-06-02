@@ -221,12 +221,22 @@
       </div>
       <h4 class="md_title pb_15" *ngIf="this.offer?.ad.description">{{ 'Description' | translate }}</h4>
       <p class="sm_text"  *ngIf="this.offer?.ad.description">
-        <span class="descuttext">
-          {{this.offer?.ad.description  | slice:0:300}} ...
-        </span>
-        <span *ngIf="ariaex">{{this.offer?.ad.description}}</span></p>
-      <div class="text-center mt_10 pb_10"  *ngIf="this.offer?.ad.description">
-          <button class="toggle_btn singledescbtn" type="button" attr.aria-expanded="{{ ariaex }}" (click)="showmoredes()"><i class="fal fa-angle-down"></i></button>
-      </div>
+        <ng-container *ngIf="this.offer?.ad.description.length>300">
+          <span class="descuttext" *ngIf="!ariaex" >
+            {{this.offer?.ad.description  | slice:0:300}} ...
+          </span>
+        </ng-container>
+        <ng-container *ngIf="this.offer?.ad.description.length<300">
+          {{this.offer?.ad.description}}
+        </ng-container>
+      </p>
+      <ng-container *ngIf="this.offer?.ad.description.length>300">
+        <p class="sm_text"  *ngIf="this.offer?.ad.description">
+          <span *ngIf="ariaex">{{this.offer?.ad.description}}</span>
+        </p>
+        <div class="text-center mt_10 pb_10"  *ngIf="this.offer?.ad.description">
+            <button class="toggle_btn singledescbtn" type="button" attr.aria-expanded="{{ ariaex }}" (click)="showmoredes()"><i class="fal fa-angle-down"></i></button>
+        </div>
+      </ng-container>
   </div>
 </main>

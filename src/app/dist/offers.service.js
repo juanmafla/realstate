@@ -18,8 +18,8 @@ var OffersService = /** @class */ (function () {
     OffersService.prototype.getOffers = function (search) {
         return this.http.post('/offers', search);
     };
-    OffersService.prototype.getSettings = function () {
-        return this.http.post('/settings', '');
+    OffersService.prototype.getSettings = function (query) {
+        return this.http.post('/settings', query);
     };
     OffersService = __decorate([
         core_1.Injectable({

@@ -26,6 +26,114 @@ export class HomeComponent implements OnInit {
   sortby:string = 'Sort by';
   currentpage:number = 1;
   currentsort:string='time';
+  query_settings:any = {
+                        "output": [
+                          {
+                            "name": "property_type",
+                            "allowed_types": [
+                              "equal"
+                            ],
+                            "allowed_values": [
+                              "flat",
+                              "commercial_premises",
+                              "house",
+                              "plot",
+                              "halls_and_warehouses"
+                            ],
+                            "input_type": "radio"
+                          },
+                          {
+                            "name": "status",
+                            "allowed_types": [
+                              "equal"
+                            ],
+                            "allowed_values": [
+                              "sell",
+                              "rent"
+                            ],
+                            "input_type": "radio"
+                          },
+                          {
+                            "name": "market",
+                            "allowed_types": [
+                              "equal"
+                            ]
+                          },
+                          {
+                            "name": "area",
+                            "allowed_types": [
+                              "lower",
+                              "greater"
+                            ]
+                          },
+                          {
+                            "name": "price",
+                            "allowed_types": [
+                              "lower",
+                              "greater"
+                            ]
+                          },
+                          {
+                            "name": "price_per_m2",
+                            "allowed_types": [
+                              "lower",
+                              "greater"
+                            ]
+                          },
+                          {
+                            "name": "floor",
+                            "allowed_types": [
+                              "equal"
+                            ]
+                          },
+                          {
+                            "name": "floor_number",
+                            "allowed_types": [
+                              "lower",
+                              "greater"
+                            ]
+                          },
+                          {
+                            "name": "room_number",
+                            "allowed_types": [
+                              "lower",
+                              "greater"
+                            ]
+                          },
+                          {
+                            "name": "tags",
+                            "allowed_types": [
+                              "equal"
+                            ],
+                            "allowed_values": [
+                              "parking",
+                              "garden",
+                              "heating",
+                              "furnishings",
+                              "site",
+                              "remote_service",
+                              "non_smoking_only",
+                              "separate_kitchen",
+                              "lift",
+                              "air_conditioning",
+                              "fence",
+                              "balcony",
+                              "swimming_pool",
+                              "basement",
+                              "attic",
+                              "terrace"
+                            ],
+                            "input_type": "checkbox"
+                          },
+                          {
+                            "name": "build_year",
+                            "allowed_types": [
+                              "lower",
+                              "greater"
+                            ]
+                          }
+                        ]
+                      }
 
   constructor(public offerservice: OffersService) {
     this.property_type =[{name :'Select All',checked : true, multi: false}];
@@ -37,7 +145,7 @@ export class HomeComponent implements OnInit {
     this.GetSettings();
   }
   GetSettings(){
-    this.offerservice.getSettings().subscribe(data=> {
+    this.offerservice.getSettings(this.query_settings).subscribe(data=> {
       this.fields=data['output'];
       this.fields?.forEach(field => {
         if(field?.name == 'property_type'){
@@ -63,6 +171,7 @@ export class HomeComponent implements OnInit {
     });
     this.offerservice.getOffers(this.search).subscribe(data=> {
       this.offers=data['output'];
+      console.log(this.search);
     });
   }
   UpdateQuery() {
