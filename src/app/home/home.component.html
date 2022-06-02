@@ -135,31 +135,33 @@
                       </ng-container>
                     </h2>
                 </a>
-                <p class="mt_5" ><ng-container *ngIf="!offer?.subtitle">No information</ng-container>
-                </p>
-                <div class="row pt_10">
-                    <div class="col-6">
-                        <ul>
-                            <li><img src="./assets/img/icon1.svg" alt=""><ng-container *ngIf="!offer?.area">No information</ng-container> {{offer?.area}} {{ 'm²' | translate }}</li>
-                            <li><img src="./assets/img/icon2.svg" alt=""><ng-container *ngIf="!offer?.type">No information</ng-container></li>
-                        </ul>
-                    </div>
-                    <div class="col-6">
-                        <ul>
-                            <li><img src="./assets/img/icon3.svg" alt=""> <ng-container *ngIf="!offer?.rooms">No information</ng-container> <ng-container *ngIf="offer?.rooms">{{ 'rooms' | translate }}</ng-container></li>
-                            <li><img src="./assets/img/icon4.svg" alt=""> <ng-container *ngIf="!offer?.rooms">No information</ng-container></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row align-items-end">
-                    <div class="col-6 mt_10">
-                        <p><strong><ng-container *ngIf="!offer?.pseller">No information</ng-container> <ng-container *ngIf="offer?.pseller">{{ 'Private seller' | translate }}</ng-container></strong></p>
-                    </div>
-                    <div class="col-6 text-right mt_10">
-                        <p><ng-container *ngIf="!offer?.price">No information</ng-container> {{ 'PLN/m²' | translate }}</p>
-                        <h2><ng-container *ngIf="!offer?.price">No info</ng-container>{{offer?.price}} {{ 'PLN' | translate }}</h2>
-                    </div>
-                </div>
+                <a routerLink="/single/{{offer?.link_id}}" class="roomall">
+                  <p class="mt_5" ><ng-container *ngIf="!offer?.subtitle">No information</ng-container>
+                  </p>
+                  <div class="row pt_10">
+                      <div class="col-6">
+                          <ul>
+                              <li><img src="./assets/img/icon1.svg" alt=""><ng-container *ngIf="!offer?.area">No information</ng-container> {{offer?.area}} {{ 'm²' | translate }}</li>
+                              <li><img src="./assets/img/icon2.svg" alt=""><ng-container *ngIf="!offer?.type">No information</ng-container></li>
+                          </ul>
+                      </div>
+                      <div class="col-6">
+                          <ul>
+                              <li><img src="./assets/img/icon3.svg" alt=""> <ng-container *ngIf="!offer?.rooms">No information</ng-container> <ng-container *ngIf="offer?.rooms">{{ 'rooms' | translate }}</ng-container></li>
+                              <li><img src="./assets/img/icon4.svg" alt=""> <ng-container *ngIf="!offer?.rooms">No information</ng-container></li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="row align-items-end">
+                      <div class="col-6 mt_10">
+                          <p><strong><ng-container *ngIf="!offer?.pseller">No information</ng-container> <ng-container *ngIf="offer?.pseller">{{ 'Private seller' | translate }}</ng-container></strong></p>
+                      </div>
+                      <div class="col-6 text-right mt_10">
+                          <p><ng-container *ngIf="!offer?.price">No information</ng-container> {{ 'PLN/m²' | translate }}</p>
+                          <h2><ng-container *ngIf="!offer?.price">No info</ng-container>{{offer?.price}} {{ 'PLN' | translate }}</h2>
+                      </div>
+                  </div>
+                </a>
                 <div class="heart">
                     <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M24.2133 1.32002C20.6933 -1.07998 16.3466 0.0400178 14 2.78668C11.6533 0.0400178 7.30663 -1.09332 3.78663 1.32002C1.91996 2.60002 0.746625 4.76002 0.666625 7.04002C0.479959 12.2134 5.06663 16.36 12.0666 22.72L12.2 22.84C13.2133 23.76 14.7733 23.76 15.7866 22.8267L15.9333 22.6933C22.9333 16.3467 27.5066 12.2 27.3333 7.02668C27.2533 4.76002 26.08 2.60002 24.2133 1.32002ZM14.1333 20.7333L14 20.8667L13.8666 20.7333C7.51996 14.9867 3.33329 11.1867 3.33329 7.33335C3.33329 4.66668 5.33329 2.66668 7.99996 2.66668C10.0533 2.66668 12.0533 3.98668 12.76 5.81335H15.2533C15.9466 3.98668 17.9466 2.66668 20 2.66668C22.6666 2.66668 24.6666 4.66668 24.6666 7.33335C24.6666 11.1867 20.48 14.9867 14.1333 20.7333Z" fill="#212121"/>

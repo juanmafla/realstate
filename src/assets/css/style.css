@@ -889,3 +889,7 @@ footer li a:disabled{
 main {
   min-height: calc(100vh - 271px);
 }
+
+.roomall p {
+  color: #212121;
+}

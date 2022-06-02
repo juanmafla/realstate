@@ -3,6 +3,7 @@
 **/
 .dropdwrap {
   position: relative;
+  padding-bottom: 1px;
 }
 .drop-toggle{
   padding: 0px 16px;
@@ -53,7 +54,7 @@ background-color: #EEEEEE;
   width: 100%;
   box-sizing: border-box;
   z-index: 999;
-  top: 68px;
+  top: 65px;
 }
 .drop-show label{
   display:block;
