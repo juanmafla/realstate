@@ -57,6 +57,7 @@ export class SingleComponent implements OnInit {
       const link_id= {"id": this.id};
       this.offerservice.getOffer(link_id).subscribe(data=> {
         this.offer=data.output;
+        console.log(this.offer);
         this.loaded=true;
       });
     });

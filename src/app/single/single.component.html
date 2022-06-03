@@ -22,7 +22,7 @@
       <owl-carousel-o id="sync1"  [options]="sync1" (changed)="getData($event, owlCar2)" #owlCar>
         <ng-container *ngFor="let photo of this.offer?.ad?.photos; let i= index">
           <ng-template carouselSlide [id]="'sl_'+i">
-            <img src="{{photo}}" class="w-100" alt="">
+            <img src="{{photo}}" alt="">
           </ng-template>
         </ng-container>
       </owl-carousel-o>
@@ -31,7 +31,7 @@
         <ng-container *ngFor="let photo of this.offer?.ad?.photos; let i= index;">
           <ng-template carouselSlide [id]="'sl_'+i">
             <a (click)="getThumbsdata(owlCar, i, photo)"  [class.currentitem]="currentitem==photo" [ngClass]="{'currentitem': i === 0}">
-              <img src="{{photo}}" class="w-100" alt="">
+              <img src="{{photo}}" alt="">
             </a>
           </ng-template>
         </ng-container>
@@ -59,23 +59,23 @@
                       </span>
                       <strong>{{this.offer?.building.properties.area}} m²</strong>
                   </li>
-                  <li *ngIf="this.offer?.building.features.type">
+                  <li *ngIf="this.offer?.building.features.building_type">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon2.svg" alt="">
                           </span>
                           {{ 'Property' | translate }}
                       </span>
-                      <strong>{{this.offer?.building.features.type}}</strong>
+                      <strong>{{this.offer?.building.features.building_type.replace('_', ' ').replace('_', ' ')}}</strong>
                   </li>
-                  <li *ngIf="this.offer?.rooms">
+                  <li *ngIf="this.offer?.building.properties.room_number">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon3.svg" alt="">
                           </span>
                           {{ 'Rooms' | translate }}
                       </span>
-                      <strong>..</strong>
+                      <strong>{{this.offer?.building.properties.room_number}}</strong>
                   </li>
                   <li *ngIf="this.offer?.building.property_type">
                       <span>
@@ -86,32 +86,32 @@
                       </span>
                       <strong>{{this.offer?.building.property_type}}</strong>
                   </li>
-                  <li *ngIf="this.offer?.floor">
+                  <li *ngIf="this.offer?.building.properties.floor">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon5.svg" alt="">
                           </span>
                           {{ 'Floor' | translate }}
                       </span>
-                      <strong>..</strong>
+                      <strong>{{this.offer?.building.properties.floor}}</strong>
                   </li>
-                  <li *ngIf="this.offer?.yearb">
+                  <li *ngIf="this.offer?.building.properties.build_year">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon6.svg" alt="">
                           </span>
                           {{ 'Year built' | translate }}
                       </span>
-                      <strong>..</strong>
+                      <strong>{{this.offer?.building.properties.build_year}}</strong>
                   </li>
-                  <li *ngIf="this.offer?.date">
+                  <li *ngIf="this.offer?.ad.created_at">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon7.svg" alt="">
                           </span>
                           {{ 'Date' | translate }}
                       </span>
-                      <strong>..</strong>
+                      <strong>{{this.offer?.ad.created_at | date}}</strong>
                   </li>
 
                   <li *ngIf="this.offer?.seller">
@@ -150,14 +150,14 @@
                       </span>
                       <strong>{{this.offer?.ad.status}}</strong>
                   </li>
-                  <li *ngIf="this.offer?.parking">
+                  <li *ngIf="this.offer?.building.properties.parking">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon12.svg" alt="">
                           </span>
                           {{ 'Parking' | translate }}
                       </span>
-                      <strong>..</strong>
+                      <strong>{{this.offer?.building.properties.parking}}</strong>
                   </li>
                   <li *ngIf="this.offer?.heating">
                       <span>

@@ -52,6 +52,7 @@ var SingleComponent = /** @class */ (function () {
             var link_id = { "id": _this.id };
             _this.offerservice.getOffer(link_id).subscribe(function (data) {
                 _this.offer = data.output;
+                console.log(_this.offer);
                 _this.loaded = true;
             });
         });
