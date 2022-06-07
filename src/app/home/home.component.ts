@@ -171,7 +171,6 @@ export class HomeComponent implements OnInit {
     });
     this.offerservice.getOffers(this.search).subscribe(data=> {
       this.offers=data['output'];
-      console.log(this.search);
     });
   }
   UpdateQuery() {

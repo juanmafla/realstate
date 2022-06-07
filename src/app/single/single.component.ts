@@ -47,6 +47,7 @@ export class SingleComponent implements OnInit {
   currentitem: string = '';
   loaded: boolean = false;
   ariaex: boolean =false;
+  numc=0;
 
 
   constructor(private route: ActivatedRoute, public offerservice: OffersService) { }
@@ -71,6 +72,7 @@ export class SingleComponent implements OnInit {
   getThumbsdata(sl:any, index:number, photo:any) {
     sl.to('sl_'+index);
     this.currentitem = photo;
+    this.numc=1;
   }
   showmoredes() {
     if(!this.ariaex) {

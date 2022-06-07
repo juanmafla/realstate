@@ -30,9 +30,16 @@
       <owl-carousel-o id="sync2" [options]="sync2" #owlCar2>
         <ng-container *ngFor="let photo of this.offer?.ad?.photos; let i= index;">
           <ng-template carouselSlide [id]="'sl_'+i">
-            <a (click)="getThumbsdata(owlCar, i, photo)"  [class.currentitem]="currentitem==photo" [ngClass]="{'currentitem': i === 0}">
-              <img src="{{photo}}" alt="">
-            </a>
+            <ng-container *ngIf="i === 0">
+              <a (click)="getThumbsdata(owlCar, i, photo)"  [class.currentitem]="currentitem==photo" [ngClass]="{'currentitem': numc === 0}">
+                <img src="{{photo}}" alt="">
+              </a>
+            </ng-container>
+            <ng-container *ngIf="i > 0">
+              <a (click)="getThumbsdata(owlCar, i, photo)"  [class.currentitem]="currentitem==photo">
+                <img src="{{photo}}" alt="">
+              </a>
+            </ng-container>
           </ng-template>
         </ng-container>
       </owl-carousel-o>
@@ -53,7 +60,7 @@
                   <li *ngIf="this.offer?.building.properties.area">
                       <span>
                           <span class="icon">
-                              <img src="./assets/img/icon1.svg" alt="">
+                              <img src="./assets/img/icon1g.svg" alt="">
                           </span>
                           {{ 'Space' | translate }}
                       </span>
@@ -62,7 +69,7 @@
                   <li *ngIf="this.offer?.building.features.building_type">
                       <span>
                           <span class="icon">
-                              <img src="./assets/img/icon2.svg" alt="">
+                              <img src="./assets/img/icon2g.svg" alt="">
                           </span>
                           {{ 'Property' | translate }}
                       </span>
@@ -71,7 +78,7 @@
                   <li *ngIf="this.offer?.building.properties.room_number">
                       <span>
                           <span class="icon">
-                              <img src="./assets/img/icon3.svg" alt="">
+                              <img src="./assets/img/icon3g.svg" alt="">
                           </span>
                           {{ 'Rooms' | translate }}
                       </span>
@@ -80,7 +87,7 @@
                   <li *ngIf="this.offer?.building.property_type">
                       <span>
                           <span class="icon">
-                              <img src="./assets/img/icon4.svg" alt="">
+                              <img src="./assets/img/icon4g.svg" alt="">
                           </span>
                           {{ 'Development' | translate }}
                       </span>
@@ -180,7 +187,7 @@
               </ul>
           </div>
       </div>
-      <h4 class="md_title">{{ 'Additional informations' | translate }}</h4>
+      <h4 class="md_title" *ngIf="this.offer?.media || this.offer?.addspaces || this.offer?.fitting || this.offer?.security">{{ 'Additional informations' | translate }}</h4>
       <div class="row form-row">
           <div class="col-md-3 col-6" *ngIf="this.offer?.media">
               <h5 class="sm_title">{{ 'Media' | translate }}</h5>
