@@ -121,11 +121,11 @@
 
       <ng-container *ngFor="let offer of this.offers;">
         <div class="room_box">
-            <a routerLink="/{{offer?.link_id}}" class="room_img">
+            <a routerLink="/offer/{{offer?.link_id}}" class="room_img">
                 <img *ngIf="offer?.photos" src="{{offer?.photos[0]}}" alt="">
             </a>
             <div class="room_content position-relative">
-                <a *ngIf="offer?.title" routerLink="/{{offer?.link_id}}">
+                <a *ngIf="offer?.title" routerLink="/offer/{{offer?.link_id}}">
                     <h2 class="pr_30">
                       <ng-container *ngIf="offer?.title.length>30">
                         {{offer?.title | slice:0:30}}..
@@ -135,7 +135,7 @@
                       </ng-container>
                     </h2>
                 </a>
-                <a routerLink="/{{offer?.link_id}}" class="roomall">
+                <a routerLink="/offer/{{offer?.link_id}}" class="roomall">
                   <p class="mt_5" ><ng-container *ngIf="!offer?.subtitle">No information</ng-container>
                   </p>
                   <div class="row pt_10">
@@ -148,7 +148,7 @@
                       <div class="col-6">
                           <ul>
                               <li><img src="./assets/img/icon3.svg" alt=""> <ng-container *ngIf="!offer?.room_number">No information</ng-container> <ng-container *ngIf="offer?.room_number">{{offer?.room_number}} {{ 'rooms' | translate }}</ng-container></li>
-                              <li><img src="./assets/img/icon4.svg" alt=""> <ng-container *ngIf="!offer?.building_type">No information</ng-container> <ng-container *ngIf="offer?.building_type">{{offer?.building_type}} </ng-container></li>
+                              <li><img src="./assets/img/icon4.svg" alt=""> <ng-container *ngIf="!offer?.building">No information</ng-container> <ng-container *ngIf="offer?.building">{{offer?.building}} </ng-container></li>
                           </ul>
                       </div>
                   </div>

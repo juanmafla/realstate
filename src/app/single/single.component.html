@@ -187,42 +187,38 @@
               </ul>
           </div>
       </div>
-      <h4 class="md_title" *ngIf="this.offer?.media || this.offer?.addspaces || this.offer?.fitting || this.offer?.security">{{ 'Additional informations' | translate }}</h4>
+      <h4 class="md_title" *ngIf="this.offer?.building?.additional?.media || this.offer?.building?.additional?.additional_space || this.offer?.building?.additional?.fitting || this.offer?.building?.additional?.security">{{ 'Additional informations' | translate }}</h4>
       <div class="row form-row">
-          <div class="col-md-3 col-6" *ngIf="this.offer?.media">
+          <div class="col-md-3 col-6" *ngIf="this.offer?.building?.additional?.media">
               <h5 class="sm_title">{{ 'Media' | translate }}</h5>
               <ul class="check_list">
-                  <li>..</li>
-                  <li>..</li>
-                  <li>..</li>
+                <ng-container *ngFor="let media of this.offer?.building?.additional?.media;">
+                  <li>{{media}}</li>
+                </ng-container>
               </ul>
           </div>
-          <div class="col-md-3 col-6" *ngIf="this.offer?.addspaces">
+          <div class="col-md-3 col-6" *ngIf="this.offer?.building?.additional?.additional_space">
               <h5 class="sm_title">{{ 'Additional space' | translate }}</h5>
               <ul class="check_list">
-                  <li>..</li>
-                  <li>..</li>
-                  <li>..</li>
+                <ng-container *ngFor="let additional_space of this.offer?.building?.additional?.additional_space;">
+                  <li>{{additional_space}}</li>
+                </ng-container>
               </ul>
           </div>
-          <div class="col-md-3 col-6" *ngIf="this.offer?.fitting">
+          <div class="col-md-3 col-6" *ngIf="this.offer?.building?.additional?.fitting">
               <h5 class="sm_title">{{ 'Fitting' | translate }}</h5>
               <ul class="check_list">
-                  <li>..</li>
-                  <li>..</li>
-                  <li>..</li>
-                  <li>..</li>
-                  <li>..</li>
-                  <li>..</li>
-                  <li>..</li>
+                <ng-container *ngFor="let fitting of this.offer?.building?.additional?.fitting;">
+                  <li>{{fitting}}</li>
+                </ng-container>
               </ul>
           </div>
-          <div class="col-md-3 col-6" *ngIf="this.offer?.security">
+          <div class="col-md-3 col-6" *ngIf="this.offer?.building?.additional?.security">
               <h5 class="sm_title">{{ 'Security' | translate }}</h5>
               <ul class="check_list">
-                  <li>..</li>
-                  <li>..</li>
-                  <li>..</li>
+                <ng-container *ngFor="let security of this.offer?.building?.additional?.security;">
+                  <li>{{security}}</li>
+                </ng-container>
               </ul>
           </div>
       </div>
