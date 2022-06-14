@@ -714,7 +714,7 @@ footer li a:disabled{
 
 #sync1 .owl-dots:after {
     content: counter(slides-num);
-    padding-left: 37px;
+    padding-left: 32px;
 }
 #sync1 .owl-dots {
 	position: absolute;

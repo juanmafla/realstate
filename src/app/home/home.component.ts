@@ -146,6 +146,9 @@ export class HomeComponent implements OnInit {
   }
   GetSettings(){
     this.offerservice.getSettings(this.query_settings).subscribe(data=> {
+      this.property_type =[{name :'Select All',checked : true, multi: false}];
+      this.market_select =[{name :'Select All',checked : true, multi: false}];
+      this.offertype_select =[{name :'Select All',checked : true, multi: false}];
       this.fields=data['output'];
       this.fields?.forEach(field => {
         if(field?.name == 'property_type'){
@@ -215,7 +218,7 @@ export class HomeComponent implements OnInit {
         },
         {
           "name": "status",
-          "values": this.offer_type
+          "value": this.offer_type
         },
       ]
     };
