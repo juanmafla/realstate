@@ -10,6 +10,9 @@ export class HomeComponent implements OnInit {
   property_type:Array<any>;
   market_select:Array<any>;
   offertype_select:Array<any>;
+  property_type_default:Array<any>;
+  market_select_default:Array<any>;
+  offertype_select_default:Array<any>;
   search:any;
   fields:Array<any> = [];
   offers:Array<any> = [];
@@ -139,6 +142,10 @@ export class HomeComponent implements OnInit {
     this.property_type =[{name :'Select All',checked : true, multi: false}];
     this.market_select =[{name :'Select All',checked : true, multi: false}];
     this.offertype_select =[{name :'Select All',checked : true, multi: false}];
+    this.property_type_default =[{name :'Select All',checked : true, multi: false}];
+    this.market_select_default =[{name :'Select All',checked : true, multi: false}];
+    this.offertype_select_default =[{name :'Select All',checked : true, multi: false}];
+
   }
   ngOnInit(): void {
     this.UpdateQuery();
@@ -149,24 +156,32 @@ export class HomeComponent implements OnInit {
       this.property_type =[{name :'Select All',checked : true, multi: false}];
       this.market_select =[{name :'Select All',checked : true, multi: false}];
       this.offertype_select =[{name :'Select All',checked : true, multi: false}];
+
+      this.property_type_default =[{name :'Select All',checked : true, multi: false}];
+      this.market_select_default =[{name :'Select All',checked : true, multi: false}];
+      this.offertype_select_default =[{name :'Select All',checked : true, multi: false}];
+
       this.fields=data['output'];
       this.fields?.forEach(field => {
         if(field?.name == 'property_type'){
           field?.allowed_values.forEach(value => {
               this.property_type.push({name: value.replace('_', ' ').replace('_', ' '), checked:true, multi: false});
               this.property?.push(value);
+              this.property_type_default.push({name: value.replace('_', ' ').replace('_', ' '), checked:true, multi: false});
           });
         }
         if(field?.name == 'market'){
           field?.allowed_values.forEach(value => {
               this.market_select.push({name: value.replace('_', ' ').replace('_', ' '), checked:true, multi: false});
               this.market?.push(value);
+              this.market_select_default.push({name: value.replace('_', ' ').replace('_', ' '), checked:true, multi: false});
           });
         }
         if(field?.name == 'status'){
           field?.allowed_values.forEach(value => {
               this.offertype_select.push({name: value.replace('_', ' ').replace('_', ' '), checked:true, multi: false});
               this.offer_type?.push(value);
+              this.offertype_select_default.push({name: value.replace('_', ' ').replace('_', ' '), checked:true, multi: false});
           });
         }
       });
@@ -255,9 +270,9 @@ export class HomeComponent implements OnInit {
     });
   }
   ClearFilters() {
-    this.property_type =[{name :'Select All',checked : true, multi: false}];
-    this.market_select =[{name :'Select All',checked : true, multi: false}];
-    this.offertype_select =[{name :'Select All',checked : true, multi: false}];
+    this.property_type =this.property_type_default;
+    this.market_select =this.market_select_default;
+    this.offertype_select =this.offertype_select_default;
     this.GetSettings();
     this.location = '';
     this.price_from = '';

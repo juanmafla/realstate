@@ -157,8 +157,8 @@
                           <p><strong><ng-container *ngIf="!offer?.pseller">No information</ng-container> <ng-container *ngIf="offer?.pseller">{{ 'Private seller' | translate }}</ng-container></strong></p>
                       </div>
                       <div class="col-6 text-right mt_10">
-                          <p><ng-container *ngIf="!offer?.price_per_m2">No information</ng-container>{{offer?.price_per_m2}} {{ 'PLN/m²' | translate }}</p>
-                          <h2><ng-container *ngIf="!offer?.price">No info</ng-container>{{offer?.price}} {{ 'PLN' | translate }}</h2>
+                          <p class="pricepm2"><ng-container *ngIf="!offer?.price_per_m2">No information</ng-container>{{offer?.price_per_m2}} {{ 'PLN/m²' | translate }}</p>
+                          <h2 class="pricet"><ng-container *ngIf="!offer?.price">No info</ng-container>{{offer?.price}} {{ 'PLN' | translate }}</h2>
                       </div>
                   </div>
                 </a>

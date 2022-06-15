@@ -910,3 +910,9 @@ main {
 .roomall p {
   color: #212121;
 }
+
+.pricepm2, .pricet {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
