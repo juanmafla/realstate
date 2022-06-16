@@ -19,13 +19,17 @@
           </div>
       </div>
 
-      <owl-carousel-o id="sync1"  [options]="sync1" (changed)="getData($event, owlCar2)" #owlCar>
-        <ng-container *ngFor="let photo of this.offer?.ad?.photos; let i= index">
-          <ng-template carouselSlide [id]="'sl_'+i">
-            <img src="{{photo}}" alt="">
-          </ng-template>
-        </ng-container>
-      </owl-carousel-o>
+
+        <owl-carousel-o id="sync1"  [options]="sync1" (changed)="getData($event, owlCar2)" #owlCar>
+          <ng-container *ngFor="let photo of this.offer?.ad?.photos; let i= index">
+            <ng-template carouselSlide [id]="'sl_'+i">
+              <img src="{{photo}}" alt="">
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+
+
+
 
       <owl-carousel-o id="sync2" [options]="sync2" #owlCar2>
         <ng-container *ngFor="let photo of this.offer?.ad?.photos; let i= index;">
@@ -66,14 +70,14 @@
                       </span>
                       <strong>{{this.offer?.building.properties.area}} m²</strong>
                   </li>
-                  <li *ngIf="this.offer?.building.features.building_type">
+                  <li *ngIf="this.offer?.building?.features?.building_type">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon2g.svg" alt="">
                           </span>
                           {{ 'Property' | translate }}
                       </span>
-                      <strong>{{this.offer?.building.features.building_type.replace('_', ' ').replace('_', ' ')}}</strong>
+                      <strong>{{this.offer?.building?.features?.building_type?.replace('_', ' ').replace('_', ' ')}}</strong>
                   </li>
                   <li *ngIf="this.offer?.building.properties.room_number">
                       <span>
