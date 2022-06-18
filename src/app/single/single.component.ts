@@ -64,8 +64,8 @@ export class SingleComponent implements OnInit {
   }
   getData(data: SlidesOutputData, sl:any) {
     this.activeSlides = data;
-    if(this.activeSlides.slides![0].id) {
-      sl.to(this.activeSlides.slides![0].id);
+    if(this.activeSlides.slides![0]?.id) {
+      sl.to(this.activeSlides.slides![0]?.id);
     }
   }
   getThumbsdata(sl:any, index:number, photo:any) {

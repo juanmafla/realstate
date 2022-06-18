@@ -1,4 +1,4 @@
-<main>
+<main *ngIf="this.id">
   <div class="container">
       <div class="row btn_wrap">
           <div class="col-sm-4">
@@ -49,26 +49,26 @@
       </owl-carousel-o>
       <div class="row">
           <div class="col-lg-7 mt_10">
-              <h2 class="title" *ngIf="this.offer?.ad.title">{{this.offer?.ad.title}}</h2>
-              <p class="sub_title mt_10">{{this.offer?.location.community}}, {{this.offer?.location.country}}</p>
+              <h2 class="title" *ngIf="this.offer?.ad?.title">{{this.offer?.ad?.title}}</h2>
+              <p class="sub_title mt_10">{{this.offer?.location?.community}}, {{this.offer?.location?.country}}</p>
           </div>
           <div class="col-lg-5 text-sm-right mt_10">
-              <h2 class="title" *ngIf="this.offer?.ad.price.price">{{this.offer?.ad.price.price}} {{this.offer?.ad.price.currency |uppercase}}</h2>
-              <p class="sub_title pricem2" *ngIf="this.offer?.ad.price.price_per_m2">{{this.offer?.ad.price.price_per_m2}} {{this.offer?.ad.price.currency |uppercase}}{{ '/m²' | translate }}</p>
+              <h2 class="title" *ngIf="this.offer?.ad?.price?.price">{{this.offer?.ad?.price?.price}} {{this.offer?.ad?.price?.currency |uppercase}}</h2>
+              <p class="sub_title pricem2" *ngIf="this.offer?.ad?.price?.price_per_m2">{{this.offer?.ad?.price?.price_per_m2}} {{this.offer?.ad?.price?.currency |uppercase}}{{ '/m²' | translate }}</p>
           </div>
       </div>
       <h4 class="md_title">{{ 'Offer details' | translate }}</h4>
       <div class="row">
           <div class="col-md-12">
               <ul class="details_list">
-                  <li *ngIf="this.offer?.building.properties.area">
+                  <li *ngIf="this.offer?.building?.properties?.area">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon1g.svg" alt="">
                           </span>
                           {{ 'Space' | translate }}
                       </span>
-                      <strong>{{this.offer?.building.properties.area}} m²</strong>
+                      <strong>{{this.offer?.building?.properties?.area}} m²</strong>
                   </li>
                   <li *ngIf="this.offer?.building?.features?.building_type">
                       <span>
@@ -79,50 +79,50 @@
                       </span>
                       <strong>{{this.offer?.building?.features?.building_type?.replace('_', ' ').replace('_', ' ')}}</strong>
                   </li>
-                  <li *ngIf="this.offer?.building.properties.room_number">
+                  <li *ngIf="this.offer?.building?.properties?.room_number">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon3g.svg" alt="">
                           </span>
                           {{ 'Rooms' | translate }}
                       </span>
-                      <strong>{{this.offer?.building.properties.room_number}}</strong>
+                      <strong>{{this.offer?.building?.properties?.room_number}}</strong>
                   </li>
-                  <li *ngIf="this.offer?.building.property_type">
+                  <li *ngIf="this.offer?.building?.property_type">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon4g.svg" alt="">
                           </span>
                           {{ 'Development' | translate }}
                       </span>
-                      <strong>{{this.offer?.building.property_type}}</strong>
+                      <strong>{{this.offer?.building?.property_type}}</strong>
                   </li>
-                  <li *ngIf="this.offer?.building.properties.floor">
+                  <li *ngIf="this.offer?.building?.properties?.floor">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon5.svg" alt="">
                           </span>
                           {{ 'Floor' | translate }}
                       </span>
-                      <strong>{{this.offer?.building.properties.floor}}</strong>
+                      <strong>{{this.offer?.building?.properties?.floor}}</strong>
                   </li>
-                  <li *ngIf="this.offer?.building.properties.build_year">
+                  <li *ngIf="this.offer?.building?.properties?.build_year">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon6.svg" alt="">
                           </span>
                           {{ 'Year built' | translate }}
                       </span>
-                      <strong>{{this.offer?.building.properties.build_year}}</strong>
+                      <strong>{{this.offer?.building?.properties?.build_year}}</strong>
                   </li>
-                  <li *ngIf="this.offer?.ad.created_at">
+                  <li *ngIf="this.offer?.ad?.created_at">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon7.svg" alt="">
                           </span>
                           {{ 'Date' | translate }}
                       </span>
-                      <strong>{{this.offer?.ad.created_at | date}}</strong>
+                      <strong>{{this.offer?.ad?.created_at | date}}</strong>
                   </li>
 
                   <li *ngIf="this.offer?.seller">
@@ -152,23 +152,23 @@
                       </span>
                       <strong>..</strong>
                   </li>
-                  <li *ngIf="this.offer?.ad.status">
+                  <li *ngIf="this.offer?.ad?.status">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon11.svg" alt="">
                           </span>
                           {{ 'State' | translate }}
                       </span>
-                      <strong>{{this.offer?.ad.status}}</strong>
+                      <strong>{{this.offer?.ad?.status}}</strong>
                   </li>
-                  <li *ngIf="this.offer?.building.properties.parking">
+                  <li *ngIf="this.offer?.building?.properties?.parking">
                       <span>
                           <span class="icon">
                               <img src="./assets/img/icon12.svg" alt="">
                           </span>
                           {{ 'Parking' | translate }}
                       </span>
-                      <strong>{{this.offer?.building.properties.parking}}</strong>
+                      <strong>{{this.offer?.building?.properties?.parking}}</strong>
                   </li>
                   <li *ngIf="this.offer?.heating">
                       <span>
@@ -226,22 +226,22 @@
               </ul>
           </div>
       </div>
-      <h4 class="md_title pb_15" *ngIf="this.offer?.ad.description">{{ 'Description' | translate }}</h4>
-      <p class="sm_text"  *ngIf="this.offer?.ad.description">
-        <ng-container *ngIf="this.offer?.ad.description.length>300">
+      <h4 class="md_title pb_15" *ngIf="this.offer?.ad?.description">{{ 'Description' | translate }}</h4>
+      <p class="sm_text"  *ngIf="this.offer?.ad?.description">
+        <ng-container *ngIf="this.offer?.ad?.description?.length>300">
           <span class="descuttext" *ngIf="!ariaex" >
-            {{this.offer?.ad.description  | slice:0:300}} ...
+            {{this.offer?.ad?.description  | slice:0:300}} ...
           </span>
         </ng-container>
-        <ng-container *ngIf="this.offer?.ad.description.length<300">
-          {{this.offer?.ad.description}}
+        <ng-container *ngIf="this.offer?.ad?.description?.length<300">
+          {{this.offer?.ad?.description}}
         </ng-container>
       </p>
-      <ng-container *ngIf="this.offer?.ad.description.length>300">
-        <p class="sm_text"  *ngIf="this.offer?.ad.description">
-          <span *ngIf="ariaex">{{this.offer?.ad.description}}</span>
+      <ng-container *ngIf="this.offer?.ad?.description?.length>300">
+        <p class="sm_text"  *ngIf="this.offer?.ad?.description">
+          <span *ngIf="ariaex">{{this.offer?.ad?.description}}</span>
         </p>
-        <div class="text-center mt_10 pb_10"  *ngIf="this.offer?.ad.description">
+        <div class="text-center mt_10 pb_10"  *ngIf="this.offer?.ad?.description">
             <button class="toggle_btn singledescbtn" type="button" attr.aria-expanded="{{ ariaex }}" (click)="showmoredes()"><i class="fal fa-angle-down"></i></button>
         </div>
       </ng-container>
